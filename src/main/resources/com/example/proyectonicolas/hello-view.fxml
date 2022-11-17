@@ -1,16 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.proyectonicolas.HelloController">
+<VBox alignment="CENTER" prefHeight="368.0" prefWidth="617.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="com.example.proyectonicolas.HelloController">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+   <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+      <children>
+         <TextField prefHeight="25.0" prefWidth="86.0" promptText="Busca por id" />
+         <TextField prefHeight="25.0" prefWidth="118.0" promptText="Busca por nombre" />
+         <ToggleButton mnemonicParsing="false" text="¿Es ropa deportiva?" />
+         <Button mnemonicParsing="false" text="Buscar" />
+      </children>
+   </HBox>
+   <TableView prefHeight="277.0" prefWidth="577.0">
+     <columns>
+       <TableColumn prefWidth="51.0" text="Nº" />
+       <TableColumn prefWidth="99.0" text="Nombre" />
+         <TableColumn prefWidth="75.0" text="Beneficios" />
+         <TableColumn prefWidth="106.0" text="Oficinas" />
+         <TableColumn prefWidth="95.0" text="Web" />
+         <TableColumn prefWidth="62.0" text="Deportiva" />
+         <TableColumn prefWidth="88.0" text="ISIN" />
+     </columns>
+   </TableView>
+   <GridPane>
+     <columnConstraints>
+       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+     </columnConstraints>
+     <rowConstraints>
+       <RowConstraints />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+     </rowConstraints>
+      <children>
+         <Button mnemonicParsing="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <graphic>
+               <ImageView fitHeight="27.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../../../../../../Downloads/add.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
+         <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+         <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      </children>
+   </GridPane>
 </VBox>
