@@ -2,6 +2,8 @@ package com.example.proyectonicolas;
 
 import com.example.proyectonicolas.dao.BrandDAO;
 import com.example.proyectonicolas.modelo.Brand;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,15 +39,16 @@ public class HelloController {
     @FXML
     private TableView tvBrands;
     @FXML
-    public static TextField idSearchBox;
+    public TextField idSearchBox;
     @FXML
-    public static TextField nameSearchBox;
+    private TextField nameSearchBox;
     @FXML
-    public static Button searchButton;
+    private Button searchButton;
     @FXML
-    public static TextField idSearchBox1;
+    private TextField idSearchBox1;
     @FXML
-    public static TextField idSearchBox11;
+    private TextField idSearchBox11;
+     private StringProperty fcaja = new SimpleStringProperty();
 
     public void initialize()  {
         fecha = new Date("01/01/1000");
@@ -75,7 +78,8 @@ public class HelloController {
 
     @FXML
     public void search(ActionEvent actionEvent) {//COmo el metodo anterior apañando en el dao
-        marcasAux = brandDAO.obtenerBrandsBusqueda();
+        System.out.println(idSearchBox.getText());
+        marcasAux = brandDAO.obtenerBrandsBusqueda(idSearchBox.getText(),nameSearchBox.getText());
 
         brandNumberC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("brandNumber"));
         brandNameC.setCellValueFactory(new PropertyValueFactory<Brand, String>("brandName"));
@@ -87,7 +91,9 @@ public class HelloController {
         isSportyC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("isSporty"));
         isinC.setCellValueFactory(new PropertyValueFactory<Brand, String>("isin"));
 
-
         tvBrands.setItems(marcasAux);
     }
+
+
+
 }

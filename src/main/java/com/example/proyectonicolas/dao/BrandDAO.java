@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 import com.example.proyectonicolas.modelo.Brand;
-import com.example.proyectonicolas.HelloController;
 
 public class BrandDAO {
     private final String servidor = "jdbc:mariadb://localhost:5555/noinch?useSSL=false";
@@ -51,22 +50,19 @@ public class BrandDAO {
             return datosResultadoConsulta;
         }
     }
-    public ObservableList<Brand> obtenerBrandsBusqueda() {
+    public ObservableList<Brand> obtenerBrandsBusqueda(String cajaNum, String cajaNombre) {
+        String numero=" ";
+        String nombre=" ";
 
         ObservableList<Brand> datosResultadoConsultaBusqueda = FXCollections.observableArrayList();
         try {
             // Nos conectamos
             conexionBBDD = DriverManager.getConnection(servidor, usuario, passwd);
-            System.out.println(HelloController.idSearchBox);
+
             String SQL="SELECT * "
                     + "FROM brands "
                     + "ORDER By brandNumber";
-            if(HelloController.idSearchBox!=null){
-                SQL = "SELECT * "
-                        + "FROM brands "
-                        + "ORDER By brandNumber" +
-                        "WHERE brandNumber="+HelloController.idSearchBox.getText();
-            }
+
 
 
             // Ejecutamos la consulta y nos devuelve una matriz de filas (registros) y columnas (datos)
@@ -96,4 +92,5 @@ public class BrandDAO {
             return datosResultadoConsultaBusqueda;
         }
     }
+
 }
