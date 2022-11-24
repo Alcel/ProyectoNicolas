@@ -93,18 +93,26 @@ public class HelloController {
                 &&dateSearchFinalS.isEmpty()){ //Campo id tiene un valor correcto pero es el unico campo rellenado
             marcasAux = brandDAO.obtenerBrandsBusqueda(idSearchBoxS,nameSearchBoxS);
         }
-        else{
-            if(!idSearchBoxS.isEmpty()) {//Campo id tiene un valor incorrecto
-                idSearchBoxS = "";
-                marcasAux = brandDAO.obtenerBrandsBusqueda(idSearchBoxS, nameSearchBoxS);
-                //Informamos al usuario del error
-                alert.setTitle("Información");
-                alert.setHeaderText("En el campo id solo se han de introducir numeros enteros");
-                alert.showAndWait().ifPresent(rs -> {
-                });
-
-            }
+        if(!idSearchBoxS.matches("-?(0|[1-9]\\d*)")&&!idSearchBoxS.isEmpty()&&nameSearchBoxS.isEmpty()&&dateSearchInitialS.isEmpty()
+                &&dateSearchFinalS.isEmpty()){ //Campo id tiene un valor incorrecto y es el unico campo rellenado
+            idSearchBoxS = "";
+            marcasAux = brandDAO.obtenerBrandsBusqueda(idSearchBoxS, nameSearchBoxS);
+            //Informamos al usuario del error
+            alert.setTitle("Información");
+            alert.setHeaderText("En el campo id solo se han de introducir numeros enteros");
+            alert.showAndWait().ifPresent(rs -> {
+            });
         }
+        if(idSearchBoxS.isEmpty()&&nameSearchBoxS.isEmpty()&&dateSearchInitialS.isEmpty()
+                &&dateSearchFinalS.isEmpty()){ //Campo id tiene un valor incorrecto y es el unico campo rellenado
+            idSearchBoxS=new String();
+
+            marcasAux = brandDAO.obtenerBrandsBusqueda(idSearchBoxS, nameSearchBoxS);
+
+
+        }
+
+
         if(idSearchBoxS.isEmpty()&&nameSearchBoxS.isEmpty()&&dateSearchInitialS.isEmpty()&&dateSearchFinalS.isEmpty()){
             marcasAux = brandDAO.obtenerBrands();
         }
