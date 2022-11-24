@@ -51,17 +51,28 @@ public class BrandDAO {
         }
     }
     public ObservableList<Brand> obtenerBrandsBusqueda(String cajaNum, String cajaNombre) {
-        String numero=" ";
-        String nombre=" ";
+        String numero=cajaNum;
+        String nombre=cajaNombre;
 
         ObservableList<Brand> datosResultadoConsultaBusqueda = FXCollections.observableArrayList();
         try {
             // Nos conectamos
+            System.out.println(numero);
+            System.out.println(nombre);
             conexionBBDD = DriverManager.getConnection(servidor, usuario, passwd);
 
             String SQL="SELECT * "
                     + "FROM brands "
                     + "ORDER By brandNumber";
+
+            if(!numero.isEmpty()&&nombre.isEmpty()){
+                 SQL="SELECT * "
+                        + "FROM brands "+"WHERE brandNumber ="+Integer.parseInt(numero);
+            }
+            if(numero.isEmpty()&&!nombre.isEmpty()){
+                SQL="SELECT * "
+                        + "FROM brands "+"WHERE brandName ='"+nombre+"'";
+            }
 
 
 

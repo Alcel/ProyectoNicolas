@@ -7,9 +7,14 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Date;
 
 public class HelloController {
@@ -44,11 +49,11 @@ public class HelloController {
     private TextField nameSearchBox;
     @FXML
     private Button searchButton;
+    private StringProperty fcaja = new SimpleStringProperty();
     @FXML
-    private TextField idSearchBox1;
+    private TextField dateSearchInitial;
     @FXML
-    private TextField idSearchBox11;
-     private StringProperty fcaja = new SimpleStringProperty();
+    private TextField dateSearchFinal;
 
     public void initialize()  {
         fecha = new Date("01/01/1000");
@@ -59,6 +64,7 @@ public class HelloController {
     }
 
     private void cargarDatosTabla () {
+
         marcas = brandDAO.obtenerBrands();
 
         brandNumberC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("brandNumber"));
@@ -71,15 +77,37 @@ public class HelloController {
         isSportyC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("isSporty"));
         isinC.setCellValueFactory(new PropertyValueFactory<Brand, String>("isin"));
 
-
         tvBrands.setItems(marcas);
     }
 
 
     @FXML
-    public void search(ActionEvent actionEvent) {//COmo el metodo anterior apañando en el dao
-        System.out.println(idSearchBox.getText());
-        marcasAux = brandDAO.obtenerBrandsBusqueda(idSearchBox.getText(),nameSearchBox.getText());
+    public void search(ActionEvent actionEvent) {
+        String idSearchBoxS =idSearchBox.getText();
+        String nameSearchBoxS = nameSearchBox.getText();
+        String dateSearchInitialS = dateSearchInitial.getText();
+        String dateSearchFinalS = dateSearchFinal.getText();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        //Apañar para que funcione busqueda solo por nombre
+        if(idSearchBoxS.matches("-?(0|[1-9]\\d*)")&&!idSearchBoxS.isEmpty()&&nameSearchBoxS.isEmpty()&&dateSearchInitialS.isEmpty()
+                &&dateSearchFinalS.isEmpty()){ //Campo id tiene un valor correcto pero es el unico campo rellenado
+            marcasAux = brandDAO.obtenerBrandsBusqueda(idSearchBoxS,nameSearchBoxS);
+        }
+        else{
+            if(!idSearchBoxS.isEmpty()) {//Campo id tiene un valor incorrecto
+                idSearchBoxS = "";
+                marcasAux = brandDAO.obtenerBrandsBusqueda(idSearchBoxS, nameSearchBoxS);
+                //Informamos al usuario del error
+                alert.setTitle("Información");
+                alert.setHeaderText("En el campo id solo se han de introducir numeros enteros");
+                alert.showAndWait().ifPresent(rs -> {
+                });
+
+            }
+        }
+        if(idSearchBoxS.isEmpty()&&nameSearchBoxS.isEmpty()&&dateSearchInitialS.isEmpty()&&dateSearchFinalS.isEmpty()){
+            marcasAux = brandDAO.obtenerBrands();
+        }
 
         brandNumberC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("brandNumber"));
         brandNameC.setCellValueFactory(new PropertyValueFactory<Brand, String>("brandName"));
@@ -87,13 +115,8 @@ public class HelloController {
         fundationC.setCellValueFactory(new PropertyValueFactory<Brand, Date>("fundation"));
         headquartersC.setCellValueFactory(new PropertyValueFactory<Brand, String>("headquarters"));
         webC.setCellValueFactory(new PropertyValueFactory<Brand, String>("web"));
-
         isSportyC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("isSporty"));
         isinC.setCellValueFactory(new PropertyValueFactory<Brand, String>("isin"));
-
         tvBrands.setItems(marcasAux);
     }
-
-
-
 }
