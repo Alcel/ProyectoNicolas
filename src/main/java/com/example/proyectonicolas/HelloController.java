@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 
 public class HelloController {
 
@@ -55,9 +55,13 @@ public class HelloController {
     private TextField dateSearchInitial;
     @FXML
     private TextField dateSearchFinal;
+    @FXML
+    private ToggleButton toogleDep;
+
+    public int activado=0;
 
     public void initialize()  {
-        fecha = new Date("01/01/1000");
+
         cargarDatosTabla();
 
         brandAux = new Brand(0,"",0f,fecha,"","",0,"");
@@ -84,40 +88,49 @@ public class HelloController {
 
     @FXML
     public void search(ActionEvent actionEvent) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-        sdf.format(dateSearchInitial);    //Gracias a sdf.format estoy cambiando de formato la fecha para que mas adelante slq lo acepte
-        sdf.format(dateSearchFinal);
+        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        //sdf.format(dateSearchInitial);    //Gracias a sdf.format estoy cambiando de formato la fecha para que mas adelante slq lo acepte
+        //sdf.format(dateSearchFinal);
         String idSearchBoxS =idSearchBox.getText();
         String nameSearchBoxS = nameSearchBox.getText();
         String dateSearchInitialS = dateSearchInitial.getText();
         String dateSearchFinalS = dateSearchFinal.getText();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
-        //Apañar para que funcione busqueda solo por nombre
-        if(idSearchBoxS.matches("-?(0|[1-9]\\d*)")&&!idSearchBoxS.isEmpty()&&nameSearchBoxS.isEmpty()&&dateSearchInitialS.isEmpty()
-                &&dateSearchFinalS.isEmpty()){ //Campo id tiene un valor correcto pero es el unico campo rellenado
-            marcasAux = brandDAO.obtenerBrandsBusqueda(idSearchBoxS,nameSearchBoxS,);
-        }
-        if(!idSearchBoxS.matches("-?(0|[1-9]\\d*)")&&!idSearchBoxS.isEmpty()&&nameSearchBoxS.isEmpty()&&dateSearchInitialS.isEmpty()
-                &&dateSearchFinalS.isEmpty()){ //Campo id tiene un valor incorrecto y es el unico campo rellenado
-            idSearchBoxS = "";
-            marcasAux = brandDAO.obtenerBrandsBusqueda(idSearchBoxS, nameSearchBoxS);
+
+        if(!idSearchBoxS.isEmpty()&&!idSearchBoxS.matches("((18|19|20)[0-9]{2}[\\-.](0[13578]|1[02])[\\-.](0[1-9]|[12][0-9]|3[01]))|(18|19|20)[0-9]{2}[\\-.](0[469]|11)[\\-.](0[1-9]|[12][0-9]|30)|(18|19|20)[0-9]{2}[\\-.](02)[\\-.](0[1-9]|1[0-9]|2[0-8])|(((18|19|20)(04|08|[2468][048]|[13579][26]))|2000)[\\-.](02)[\\-.]29")){
             //Informamos al usuario del error
             alert.setTitle("Información");
             alert.setHeaderText("En el campo id solo se han de introducir numeros enteros");
             alert.showAndWait().ifPresent(rs -> {
             });
         }
-        if(idSearchBoxS.isEmpty()&&nameSearchBoxS.isEmpty()&&dateSearchInitialS.isEmpty()
-                &&dateSearchFinalS.isEmpty()){ //Campo id tiene un valor incorrecto y es el unico campo rellenado
-            idSearchBoxS=new String();
-            marcasAux = brandDAO.obtenerBrandsBusqueda(idSearchBoxS, nameSearchBoxS);
-        }
+        else{
+            if(!dateSearchInitialS.isEmpty()&&!dateSearchInitialS.matches("((18|19|20)[0-9]{2}[\\-.](0[13578]|1[02])[\\-.](0[1-9]|[12][0-9]|3[01]))|(18|19|20)[0-9]{2}[\\-.](0[469]|11)[\\-.](0[1-9]|[12][0-9]|30)|(18|19|20)[0-9]{2}[\\-.](02)[\\-.](0[1-9]|1[0-9]|2[0-8])|(((18|19|20)(04|08|[2468][048]|[13579][26]))|2000)[\\-.](02)[\\-.]29")){
+                alert.setTitle("Información");
+                alert.setHeaderText("Tanto el campo fecha inicio como fecha final el formato a usar es el de Año-Mes-Dia");
+                alert.setContentText("Como ejemplo: 2000-04-01");
+                alert.showAndWait().ifPresent(rs -> {
+                });
+            } else if (!dateSearchFinalS.isEmpty()&&!dateSearchFinalS.matches("((18|19|20)[0-9]{2}[\\-.](0[13578]|1[02])[\\-.](0[1-9]|[12][0-9]|3[01]))|(18|19|20)[0-9]{2}[\\-.](0[469]|11)[\\-.](0[1-9]|[12][0-9]|30)|(18|19|20)[0-9]{2}[\\-.](02)[\\-.](0[1-9]|1[0-9]|2[0-8])|(((18|19|20)(04|08|[2468][048]|[13579][26]))|2000)[\\-.](02)[\\-.]29")) {
+                alert.setTitle("Información");
+                alert.setHeaderText("Tanto el campo fecha inicio como fecha final el formato a usar es el de Año-Mes-Dia");
+                alert.setContentText("Como ejemplo: 2000-04-01");
+                alert.showAndWait().ifPresent(rs -> {
+                });
+                System.out.println(dateSearchFinalS.isEmpty());
+            }
+                if (dateSearchInitialS.isEmpty()) {
+                    dateSearchInitialS = "0-0-0";
+                    System.out.println(dateSearchInitialS);
+                }
+                if (dateSearchFinalS.isEmpty()) {
+                    dateSearchFinalS = "9999-12-30";
+                }
 
 
-        if(idSearchBoxS.isEmpty()&&nameSearchBoxS.isEmpty()&&dateSearchInitialS.isEmpty()&&dateSearchFinalS.isEmpty()){
-            marcasAux = brandDAO.obtenerBrands();
         }
+        marcasAux = brandDAO.obtenerBrandsBusqueda(idSearchBoxS, nameSearchBoxS, dateSearchInitialS, dateSearchFinalS, true);
 
         brandNumberC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("brandNumber"));
         brandNameC.setCellValueFactory(new PropertyValueFactory<Brand, String>("brandName"));
@@ -128,5 +141,14 @@ public class HelloController {
         isSportyC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("isSporty"));
         isinC.setCellValueFactory(new PropertyValueFactory<Brand, String>("isin"));
         tvBrands.setItems(marcasAux);
+    }
+    @FXML
+    public void cambioDep(ActionEvent actionEvent) {
+        if(toogleDep.isSelected()){
+            activado =1;
+        }
+        else{
+            activado=0;
+        }
     }
 }

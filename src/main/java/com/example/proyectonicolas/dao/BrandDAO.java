@@ -53,6 +53,10 @@ public class BrandDAO {
     public ObservableList<Brand> obtenerBrandsBusqueda(String cajaNum, String cajaNombre, String cajaFechaI, String cajaFechaF, Boolean deportivo) {
         String numero=cajaNum;
         String nombre=cajaNombre;
+        String fechaI= cajaFechaI;
+        String fechaF = cajaFechaF;
+        Boolean deptiv = deportivo;
+
 
         ObservableList<Brand> datosResultadoConsultaBusqueda = FXCollections.observableArrayList();
         try {
@@ -65,13 +69,18 @@ public class BrandDAO {
                     + "FROM brands "
                     + "ORDER By brandNumber";
 
-            if(!numero.isEmpty()&&nombre.isEmpty()&&cajaFechaI.isEmpty()&&cajaFechaF.isEmpty()&&deportivo.equals(false)){ //Solo numero
+            if(!numero.isEmpty()){ /*Solo numero (Puesto que el id es una clave unica, no tiene sentido buscar por ningun filtro mas
+                pues a lo unico que puede conducir es al error y que no se encuentre ningun resultado*/
                  SQL="SELECT * "
                         + "FROM brands "+"WHERE brandNumber ="+Integer.parseInt(numero);
             }
             if(numero.isEmpty()&&!nombre.isEmpty()){ //Solo nombre
                 SQL="SELECT * "
-                        + "FROM brands "+"WHERE brandName ='"+nombre+"'";
+                        + "FROM brands "+"WHERE brandName ='"+nombre+"' AND fundation BETWEEN "+"'"+cajaFechaI+"'"+"AND"+"'"+cajaFechaF +"'";
+            }
+            if(numero.isEmpty()&&nombre.isEmpty()){ //Solo nombre
+                SQL="SELECT * "
+                        + "FROM brands "+"WHERE fundation BETWEEN "+"'"+cajaFechaI+"'"+"AND"+"'"+cajaFechaF +"'";
             }
 
 
