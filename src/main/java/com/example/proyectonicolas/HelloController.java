@@ -15,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class HelloController {
@@ -83,15 +84,19 @@ public class HelloController {
 
     @FXML
     public void search(ActionEvent actionEvent) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        sdf.format(dateSearchInitial);    //Gracias a sdf.format estoy cambiando de formato la fecha para que mas adelante slq lo acepte
+        sdf.format(dateSearchFinal);
         String idSearchBoxS =idSearchBox.getText();
         String nameSearchBoxS = nameSearchBox.getText();
         String dateSearchInitialS = dateSearchInitial.getText();
         String dateSearchFinalS = dateSearchFinal.getText();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
         //Apañar para que funcione busqueda solo por nombre
         if(idSearchBoxS.matches("-?(0|[1-9]\\d*)")&&!idSearchBoxS.isEmpty()&&nameSearchBoxS.isEmpty()&&dateSearchInitialS.isEmpty()
                 &&dateSearchFinalS.isEmpty()){ //Campo id tiene un valor correcto pero es el unico campo rellenado
-            marcasAux = brandDAO.obtenerBrandsBusqueda(idSearchBoxS,nameSearchBoxS);
+            marcasAux = brandDAO.obtenerBrandsBusqueda(idSearchBoxS,nameSearchBoxS,);
         }
         if(!idSearchBoxS.matches("-?(0|[1-9]\\d*)")&&!idSearchBoxS.isEmpty()&&nameSearchBoxS.isEmpty()&&dateSearchInitialS.isEmpty()
                 &&dateSearchFinalS.isEmpty()){ //Campo id tiene un valor incorrecto y es el unico campo rellenado
@@ -106,10 +111,7 @@ public class HelloController {
         if(idSearchBoxS.isEmpty()&&nameSearchBoxS.isEmpty()&&dateSearchInitialS.isEmpty()
                 &&dateSearchFinalS.isEmpty()){ //Campo id tiene un valor incorrecto y es el unico campo rellenado
             idSearchBoxS=new String();
-
             marcasAux = brandDAO.obtenerBrandsBusqueda(idSearchBoxS, nameSearchBoxS);
-
-
         }
 
 

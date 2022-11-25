@@ -50,7 +50,7 @@ public class BrandDAO {
             return datosResultadoConsulta;
         }
     }
-    public ObservableList<Brand> obtenerBrandsBusqueda(String cajaNum, String cajaNombre) {
+    public ObservableList<Brand> obtenerBrandsBusqueda(String cajaNum, String cajaNombre, String cajaFechaI, String cajaFechaF, Boolean deportivo) {
         String numero=cajaNum;
         String nombre=cajaNombre;
 
@@ -65,11 +65,11 @@ public class BrandDAO {
                     + "FROM brands "
                     + "ORDER By brandNumber";
 
-            if(!numero.isEmpty()&&nombre.isEmpty()){
+            if(!numero.isEmpty()&&nombre.isEmpty()&&cajaFechaI.isEmpty()&&cajaFechaF.isEmpty()&&deportivo.equals(false)){ //Solo numero
                  SQL="SELECT * "
                         + "FROM brands "+"WHERE brandNumber ="+Integer.parseInt(numero);
             }
-            if(numero.isEmpty()&&!nombre.isEmpty()){
+            if(numero.isEmpty()&&!nombre.isEmpty()){ //Solo nombre
                 SQL="SELECT * "
                         + "FROM brands "+"WHERE brandName ='"+nombre+"'";
             }
