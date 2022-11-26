@@ -1,5 +1,6 @@
-package com.example.proyectonicolas;
+package com.example.proyectonicolas.controllers;
 
+import com.example.proyectonicolas.HelloApplication;
 import com.example.proyectonicolas.dao.BrandDAO;
 import com.example.proyectonicolas.modelo.Brand;
 import javafx.beans.property.SimpleStringProperty;
@@ -12,7 +13,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -56,9 +59,11 @@ public class HelloController {
     @FXML
     private TextField dateSearchFinal;
     @FXML
-    private ToggleButton toogleDep;
+    private ToggleButton deptv;
+    public int buleano;
+    @FXML
+    private Button addButton;
 
-    public int activado=0;
 
     public void initialize()  {
 
@@ -88,17 +93,15 @@ public class HelloController {
 
     @FXML
     public void search(ActionEvent actionEvent) {
-        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-        //sdf.format(dateSearchInitial);    //Gracias a sdf.format estoy cambiando de formato la fecha para que mas adelante slq lo acepte
-        //sdf.format(dateSearchFinal);
         String idSearchBoxS =idSearchBox.getText();
         String nameSearchBoxS = nameSearchBox.getText();
         String dateSearchInitialS = dateSearchInitial.getText();
         String dateSearchFinalS = dateSearchFinal.getText();
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
 
-        if(!idSearchBoxS.isEmpty()&&!idSearchBoxS.matches("((18|19|20)[0-9]{2}[\\-.](0[13578]|1[02])[\\-.](0[1-9]|[12][0-9]|3[01]))|(18|19|20)[0-9]{2}[\\-.](0[469]|11)[\\-.](0[1-9]|[12][0-9]|30)|(18|19|20)[0-9]{2}[\\-.](02)[\\-.](0[1-9]|1[0-9]|2[0-8])|(((18|19|20)(04|08|[2468][048]|[13579][26]))|2000)[\\-.](02)[\\-.]29")){
+        if(!idSearchBoxS.isEmpty()&&!idSearchBoxS.matches("[0-9]*")){
             //Informamos al usuario del error
             alert.setTitle("Información");
             alert.setHeaderText("En el campo id solo se han de introducir numeros enteros");
@@ -130,7 +133,7 @@ public class HelloController {
 
 
         }
-        marcasAux = brandDAO.obtenerBrandsBusqueda(idSearchBoxS, nameSearchBoxS, dateSearchInitialS, dateSearchFinalS, true);
+        marcasAux = brandDAO.obtenerBrandsBusqueda(idSearchBoxS, nameSearchBoxS, dateSearchInitialS, dateSearchFinalS,buleano );
 
         brandNumberC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("brandNumber"));
         brandNameC.setCellValueFactory(new PropertyValueFactory<Brand, String>("brandName"));
@@ -142,13 +145,37 @@ public class HelloController {
         isinC.setCellValueFactory(new PropertyValueFactory<Brand, String>("isin"));
         tvBrands.setItems(marcasAux);
     }
+
+
     @FXML
     public void cambioDep(ActionEvent actionEvent) {
-        if(toogleDep.isSelected()){
-            activado =1;
+        if (deptv.isSelected()){
+            buleano=1;
         }
-        else{
-            activado=0;
+        else {
+            buleano=0;
+        }
+    }
+
+    @FXML
+    public void add(ActionEvent actionEvent) {
+        try {
+
+
+            Stage stage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("add-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+            stage.setTitle("Hello!");
+            stage.setScene(scene);
+            stage.setMinWidth(720);
+            stage.setMinHeight(413);
+            stage.show();
+
+
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

@@ -50,12 +50,12 @@ public class BrandDAO {
             return datosResultadoConsulta;
         }
     }
-    public ObservableList<Brand> obtenerBrandsBusqueda(String cajaNum, String cajaNombre, String cajaFechaI, String cajaFechaF, Boolean deportivo) {
+    public ObservableList<Brand> obtenerBrandsBusqueda(String cajaNum, String cajaNombre, String cajaFechaI, String cajaFechaF, int deportivo) {
         String numero=cajaNum;
         String nombre=cajaNombre;
         String fechaI= cajaFechaI;
         String fechaF = cajaFechaF;
-        Boolean deptiv = deportivo;
+        int deptiv = deportivo;
 
 
         ObservableList<Brand> datosResultadoConsultaBusqueda = FXCollections.observableArrayList();
@@ -76,11 +76,11 @@ public class BrandDAO {
             }
             if(numero.isEmpty()&&!nombre.isEmpty()){ //Solo nombre
                 SQL="SELECT * "
-                        + "FROM brands "+"WHERE brandName ='"+nombre+"' AND fundation BETWEEN "+"'"+cajaFechaI+"'"+"AND"+"'"+cajaFechaF +"'";
+                        + "FROM brands "+"WHERE brandName ='"+nombre+"' AND fundation BETWEEN "+"'"+cajaFechaI+"'"+"AND"+"'"+cajaFechaF +"' AND isSporty ="+deptiv;
             }
             if(numero.isEmpty()&&nombre.isEmpty()){ //Solo nombre
                 SQL="SELECT * "
-                        + "FROM brands "+"WHERE fundation BETWEEN "+"'"+cajaFechaI+"'"+"AND"+"'"+cajaFechaF +"'";
+                        + "FROM brands "+"WHERE fundation BETWEEN "+"'"+cajaFechaI+"'"+"AND"+"'"+cajaFechaF +"' AND isSporty ="+deptiv;
             }
 
 
@@ -111,6 +111,21 @@ public class BrandDAO {
         } finally {
             return datosResultadoConsultaBusqueda;
         }
+    }
+    public void insert(String cajaNombre, Float earnings, String cajaFecha, String headquarters ,String web
+            ,int deportivo, String isin ){
+        String sql = "INSERT INTO brands(brandName,earnings,fundation,headquarters,web,isSporty,isin) VALUES " +
+                "('"+cajaNombre+"',"+earnings+",'"+cajaFecha+"','"+headquarters+"','"
+                +web+"',"+deportivo+",'"+isin+"')";
+        try {
+            conexionBBDD = DriverManager.getConnection(servidor, usuario, passwd);
+            PreparedStatement pst = conexionBBDD.prepareStatement(sql);
+            pst.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 }
