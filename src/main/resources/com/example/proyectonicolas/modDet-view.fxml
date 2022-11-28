@@ -6,14 +6,12 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectonicolas.controllers.AddController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectonicolas.controllers.ModDetController">
    <children>
-      <TextField fx:id="webBox" layoutX="79.0" layoutY="200.0" prefHeight="26.0" prefWidth="415.0" promptText="Web" />
-      <TextField fx:id="headquartersBox" layoutX="307.0" layoutY="55.0" prefHeight="26.0" prefWidth="186.0" promptText="Sede" />
+      <TextField fx:id="comBox" layoutX="79.0" layoutY="200.0" prefHeight="26.0" prefWidth="186.0" promptText="com" />
       <TextField fx:id="earningsBox" layoutX="79.0" layoutY="152.0" prefHeight="26.0" prefWidth="185.0" promptText="Beneficios (en miles de millones)" />
       <TextField fx:id="nameBox" layoutX="79.0" layoutY="55.0" prefHeight="26.0" prefWidth="186.0" promptText="Nombre" />
-      <TextField fx:id="dateBox" layoutX="79.0" layoutY="104.0" prefHeight="26.0" prefWidth="186.0" promptText="Fundacion AAA-MM-DD" />
-      <TextField fx:id="isinBox" layoutX="307.0" layoutY="117.0" prefHeight="26.0" prefWidth="186.0" promptText="Codigo ISIN" />
+      <TextField fx:id="dateBox" layoutX="79.0" layoutY="104.0" prefHeight="26.0" prefWidth="186.0" promptText="Lanzamineto AAAA-MM-DD" />
       <Button fx:id="resetButton" layoutX="248.0" layoutY="328.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
       <Button fx:id="cancelButton" layoutX="146.0" layoutY="328.0" mnemonicParsing="false" onAction="#closeWindow" text="Cancelar" />
       <Button fx:id="addNewButton" layoutX="364.0" layoutY="328.0" mnemonicParsing="false" onAction="#addNew" text="Insertar" />

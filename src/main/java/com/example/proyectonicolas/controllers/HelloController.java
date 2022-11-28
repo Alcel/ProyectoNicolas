@@ -28,6 +28,7 @@ public class HelloController {
 
     private BrandDAO brandDAO= new BrandDAO();
     private Brand brandAux;
+
     @FXML
     private TableColumn brandNumberC;
     @FXML
@@ -46,7 +47,7 @@ public class HelloController {
     @FXML
     private TableColumn fundationC;
     @FXML
-    private TableView tvBrands;
+    public TableView tvBrands;
     @FXML
     public TextField idSearchBox;
     @FXML
@@ -63,6 +64,10 @@ public class HelloController {
     public int buleano;
     @FXML
     private Button addButton;
+    @FXML
+    private Button editButton;
+    @FXML
+    private Button deleteButton;
 
 
     public void initialize()  {
@@ -70,10 +75,11 @@ public class HelloController {
         cargarDatosTabla();
 
         brandAux = new Brand(0,"",0f,fecha,"","",0,"");
+        cargarGestorDobleCLick();
 
     }
 
-    private void cargarDatosTabla () {
+    public void cargarDatosTabla () {
 
         marcas = brandDAO.obtenerBrands();
 
@@ -161,7 +167,6 @@ public class HelloController {
     public void add(ActionEvent actionEvent) {
         try {
 
-
             Stage stage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("add-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 320, 240);
@@ -170,12 +175,89 @@ public class HelloController {
             stage.setMinWidth(720);
             stage.setMinHeight(413);
             stage.show();
-
+            stage.onCloseRequestProperty(); //Aqui
 
 
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @FXML
+    public void openEdit(ActionEvent actionEvent) {
+
+        try {
+            Stage stage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mod-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+            ModController modcont = (ModController) fxmlLoader.getController();
+            modcont.initialize((Brand) tvBrands.getSelectionModel().getSelectedItem());
+            stage.setTitle("Hello!");
+            stage.setScene(scene);
+            stage.setMinWidth(720);
+            stage.setMinHeight(413);
+            stage.show();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    @FXML
+    public void deleteRow(ActionEvent actionEvent) {
+        Brand marca= (Brand) tvBrands.getSelectionModel().getSelectedItem();
+        brandDAO.delete(marca.getBrandNumber());
+        cargarDatosTabla();
+    }
+
+    private void cargarGestorDobleCLick () {
+
+        tvBrands.setRowFactory(tv -> {
+            TableRow<Brand> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+
+                    brandAux.setBrandNumber(row.getItem().getBrandNumber());
+                    brandAux.setBrandName(row.getItem().getBrandName());
+                    brandAux.setEarnings(row.getItem().getEarnings());
+                    brandAux.setFundation(row.getItem().getFundation());
+                    brandAux.setHeadquarters(row.getItem().getHeadquarters());
+                    final int bul=row.getItem().getIsSporty();
+                    if (bul==0){
+                        brandAux.setSporty(false);
+                    }else {
+                        brandAux.setSporty(true);
+                    }
+
+                    brandAux.setWeb(row.getItem().getWeb());
+                    brandAux.setIsin(row.getItem().getIsin());
+                    System.out.println(brandAux.getBrandName());
+                    openDet(brandAux.getBrandNumber());
+
+                }
+            });
+
+            return row;
+        });
+    }
+
+    public void openDet(int num){
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("details-view.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load(), 320, 240);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        DetailsController detcont = (DetailsController) fxmlLoader.getController();
+        detcont.initialize(num);
+        stage.setTitle("Hello!");
+        stage.setScene(scene);
+        stage.setMinWidth(720);
+        stage.setMinHeight(413);
+        stage.show();
     }
 }

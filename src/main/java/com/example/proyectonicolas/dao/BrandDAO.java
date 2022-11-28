@@ -1,5 +1,6 @@
 package com.example.proyectonicolas.dao;
 
+import com.example.proyectonicolas.modelo.Garment;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -112,6 +113,8 @@ public class BrandDAO {
             return datosResultadoConsultaBusqueda;
         }
     }
+
+
     public void insert(String cajaNombre, Float earnings, String cajaFecha, String headquarters ,String web
             ,int deportivo, String isin ){
         String sql = "INSERT INTO brands(brandName,earnings,fundation,headquarters,web,isSporty,isin) VALUES " +
@@ -126,6 +129,33 @@ public class BrandDAO {
             throw new RuntimeException(e);
         }
 
+    }
+    public void update(int id,String cajaNombre, Float earnings, String cajaFecha, String headquarters ,String web
+            ,int deportivo, String isin ){
+        String sql= "update brands set brandName = '" + cajaNombre+
+                "',earnings = "+earnings+",fundation ='" +cajaFecha+
+                "',headquarters = '"+headquarters+"', web= '"+web+
+                "',isSporty= "+deportivo+",isin= '"+isin+"' where brandNumber ="+id ;
+        try {
+            conexionBBDD = DriverManager.getConnection(servidor, usuario, passwd);
+            PreparedStatement pst = conexionBBDD.prepareStatement(sql);
+            pst.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void delete (int id){
+        String sql= "delete from brands where brandNumber ="+id ;
+        try {
+            conexionBBDD = DriverManager.getConnection(servidor, usuario, passwd);
+            PreparedStatement pst = conexionBBDD.prepareStatement(sql);
+            pst.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

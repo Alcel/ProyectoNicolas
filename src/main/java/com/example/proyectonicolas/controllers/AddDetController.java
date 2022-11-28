@@ -1,19 +1,13 @@
 package com.example.proyectonicolas.controllers;
 
-import com.example.proyectonicolas.dao.BrandDAO;
+import com.example.proyectonicolas.dao.GarmentDAO;
+import com.example.proyectonicolas.modelo.Brand;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
-import javafx.stage.Stage;
+import javafx.scene.control.*;
 
-public class AddController {
+public class AddDetController {
     @javafx.fxml.FXML
-    private TextField webBox;
-    @javafx.fxml.FXML
-    private TextField headquartersBox;
+    private TextField comBox;
     @javafx.fxml.FXML
     private TextField earningsBox;
     @javafx.fxml.FXML
@@ -21,33 +15,44 @@ public class AddController {
     @javafx.fxml.FXML
     private TextField dateBox;
     @javafx.fxml.FXML
-    private TextField isinBox;
-    private Integer buleano = 0;
+    private Button resetButton;
+    @javafx.fxml.FXML
+    private Button cancelButton;
     @javafx.fxml.FXML
     private Button addNewButton;
-    @FXML
+    @javafx.fxml.FXML
     private ToggleButton deptvTogle;
-    @FXML
-    private Button cancelButton;
-    @FXML
-    private Button resetButton;
 
+    private int buleano;
 
-    private HelloController hc = new HelloController();
+    private int comp;
 
-    @FXML
+    @javafx.fxml.FXML
+    public void reset(ActionEvent actionEvent) {
+    }
+
+    @javafx.fxml.FXML
+    public void closeWindow(ActionEvent actionEvent) {
+    }
+
+    public void initialize(int num){
+        comp=num;
+    }
+    @javafx.fxml.FXML
     public void addNew(ActionEvent actionEvent) {
-        BrandDAO brandDAO= new BrandDAO();
+
+        GarmentDAO garmentDAO = new GarmentDAO();
         String nombreS = nameBox.getText();
-        String sedeS = headquartersBox.getText();
+
         String beneficiosS = earningsBox.getText();
         Float beneficiosF = 0F;
         String fechaS = dateBox.getText();
-        String webS = webBox.getText();
+        String comS = comBox.getText();
 
-        String isinS = isinBox.getText();
+
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        if(beneficiosS.isEmpty()||fechaS.isEmpty()||nombreS.isEmpty()||sedeS.isEmpty()||isinS.isEmpty()){
+        if(beneficiosS.isEmpty()||fechaS.isEmpty()||nombreS.isEmpty()||comS.isEmpty()){
             alert.setTitle("Información");
             alert.setHeaderText("Ha de rellenar todos los campos");
             alert.setContentText("El campo web es opcional");
@@ -69,25 +74,15 @@ public class AddController {
                 alert.setContentText("Como ejemplo: 2001-02-05 o 1996-12-29");
                 alert.showAndWait().ifPresent(rs -> {
                 });
-            } else if (!webS.isEmpty()) {
-                beneficiosF = Float.parseFloat(beneficiosS);
-                brandDAO.insert(nombreS,beneficiosF,fechaS,sedeS,webS,buleano,isinS);
-                Stage stage = (Stage) addNewButton.getScene().getWindow();
-                stage.close();
-                hc.cargarDatosTabla();
             }
             else {
                 beneficiosF = Float.parseFloat(beneficiosS);
-                brandDAO.insert(nombreS,beneficiosF,fechaS,sedeS,webS,0,isinS);
-                Stage stage = (Stage) addNewButton.getScene().getWindow();
-                stage.close();
-                hc.cargarDatosTabla();
+
+                garmentDAO.insert(nombreS,beneficiosF,fechaS,buleano,comS,comp); //Por aqui
             }
 
 
         }
-
-
     }
     public void cambioDep(ActionEvent actionEvent) {
         if (deptvTogle.isSelected()){
@@ -96,21 +91,5 @@ public class AddController {
         else {
             buleano=0;
         }
-    }
-
-    @FXML
-    public void closeWindow(ActionEvent actionEvent) {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    public void reset(ActionEvent actionEvent) {
-        nameBox.clear();
-        dateBox.clear();
-        earningsBox.clear();
-        isinBox.clear();
-        webBox.clear();
-        deptvTogle.setSelected(false);
     }
 }

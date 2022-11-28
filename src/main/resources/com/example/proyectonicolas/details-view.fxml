@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectonicolas.controllers.DetailsController">
+   <children>
+      <TableView fx:id="tvGarment" layoutX="14.0" layoutY="100.0" prefHeight="200.0" prefWidth="568.0">
+        <columns>
+          <TableColumn fx:id="numC" prefWidth="75.0" text="Numero" />
+          <TableColumn fx:id="nameC" prefWidth="101.60003662109375" text="Nombre" />
+            <TableColumn fx:id="launchC" prefWidth="92.0" text="Lanzamiento" />
+            <TableColumn fx:id="earningsC" prefWidth="81.5999755859375" text="Beneficios" />
+            <TableColumn fx:id="dispoC" prefWidth="103.199951171875" text="Disponibilidad" />
+            <TableColumn fx:id="comC" prefWidth="112.79998779296875" text="Pais de fabricacion" />
+        </columns>
+      </TableView>
+      <Button fx:id="garmentNew" layoutX="34.0" layoutY="335.0" mnemonicParsing="false" onAction="#addEdit" text="Añadir" />
+      <Button fx:id="garmentDelete" layoutX="272.0" layoutY="335.0" mnemonicParsing="false" text="Borrar" />
+      <Button fx:id="garmentEdit" layoutX="480.0" layoutY="335.0" mnemonicParsing="false" onAction="#openEdit" text="Edit" />
+   </children>
+</AnchorPane>
