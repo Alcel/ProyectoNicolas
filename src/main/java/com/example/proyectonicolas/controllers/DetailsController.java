@@ -72,6 +72,7 @@ public class DetailsController{
 
         tvGarment.setItems(prendas);
     }
+    @javafx.fxml.FXML
     public void openEdit(ActionEvent actionEvent) {
 
         try {
@@ -84,7 +85,8 @@ public class DetailsController{
             stage.setScene(scene);
             stage.setMinWidth(720);
             stage.setMinHeight(413);
-            stage.show();
+            stage.showAndWait();
+            cargarDatosTabla(numero);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -103,7 +105,9 @@ public class DetailsController{
             stage.setScene(scene);
             stage.setMinWidth(720);
             stage.setMinHeight(413);
-            stage.show();
+            stage.showAndWait();
+            cargarDatosTabla(numero);
+
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -111,5 +115,9 @@ public class DetailsController{
     }
 
 
-
+    @javafx.fxml.FXML
+    public void deleteEdit(ActionEvent actionEvent) {
+        Garment prenda = (Garment) tvGarment.getSelectionModel().getSelectedItem();
+        garment.delete(prenda.getClothesNumber());
+    }
 }

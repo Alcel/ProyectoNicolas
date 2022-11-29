@@ -18,7 +18,7 @@
         </columns>
       </TableView>
       <Button fx:id="garmentNew" layoutX="34.0" layoutY="335.0" mnemonicParsing="false" onAction="#addEdit" text="Añadir" />
-      <Button fx:id="garmentDelete" layoutX="272.0" layoutY="335.0" mnemonicParsing="false" text="Borrar" />
+      <Button fx:id="garmentDelete" layoutX="272.0" layoutY="335.0" mnemonicParsing="false" onAction="#deleteEdit" text="Borrar" />
       <Button fx:id="garmentEdit" layoutX="480.0" layoutY="335.0" mnemonicParsing="false" onAction="#openEdit" text="Edit" />
    </children>
 </AnchorPane>

@@ -79,4 +79,15 @@ public class GarmentDAO {
             throw new RuntimeException(e);
         }
     }
+    public void delete(int num){
+        String SQL = "DELETE From clothes where clothesNumber ="+num;
+        try {
+            conexionBBDD = DriverManager.getConnection(servidor, usuario, passwd);
+            PreparedStatement pst = conexionBBDD.prepareStatement(SQL);
+            pst.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

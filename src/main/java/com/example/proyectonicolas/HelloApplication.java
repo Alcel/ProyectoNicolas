@@ -2,7 +2,9 @@ package com.example.proyectonicolas;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,6 +19,9 @@ public class HelloApplication extends Application {
         stage.setMinWidth(720);
         stage.setMinHeight(413);
         stage.show();
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX((screenBounds.getWidth() - stage.getWidth()) / 3);
+        stage.setY((screenBounds.getHeight() - stage.getHeight()) / 3);
     }
 
     public static void main(String[] args) {

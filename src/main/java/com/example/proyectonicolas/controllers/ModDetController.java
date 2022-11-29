@@ -89,7 +89,9 @@ public class ModDetController {
                 }
                 else {
                     beneficiosF = Float.parseFloat(beneficiosS);
-                    garmentDAO.update(id,nombreS,beneficiosF,fechaS,buleano,comS); //Por aqui
+                    garmentDAO.update(id,nombreS,beneficiosF,fechaS,buleano,comS);
+                    Stage stage = (Stage) cancelButton.getScene().getWindow();
+                    stage.close();
                 }
 
 

@@ -33,11 +33,11 @@ public class AddController {
     private Button resetButton;
 
 
-    private HelloController hc = new HelloController();
+    private HelloController hc;
 
     @FXML
     public void addNew(ActionEvent actionEvent) {
-        BrandDAO brandDAO= new BrandDAO();
+        BrandDAO brandDAO = new BrandDAO();
         String nombreS = nameBox.getText();
         String sedeS = headquartersBox.getText();
         String beneficiosS = earningsBox.getText();
@@ -47,15 +47,14 @@ public class AddController {
 
         String isinS = isinBox.getText();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        if(beneficiosS.isEmpty()||fechaS.isEmpty()||nombreS.isEmpty()||sedeS.isEmpty()||isinS.isEmpty()){
+        if (beneficiosS.isEmpty() || fechaS.isEmpty() || nombreS.isEmpty() || sedeS.isEmpty() || isinS.isEmpty()) {
             alert.setTitle("Información");
             alert.setHeaderText("Ha de rellenar todos los campos");
             alert.setContentText("El campo web es opcional");
             alert.showAndWait().ifPresent(rs -> {
             });
-        }
-        else{
-            if(!beneficiosS.matches("^[1-9]\\d*.\\d*|0.\\d*[1-9]\\d*$")){
+        } else {
+            if (!beneficiosS.matches("^[1-9]\\d*.\\d*|0.\\d*[1-9]\\d*$")) {
                 alert.setTitle("Información");
                 alert.setHeaderText("Ha de introducir un numero positivo");
                 alert.setContentText("Como ejemplo: 100.910 o 1.0");
@@ -71,14 +70,13 @@ public class AddController {
                 });
             } else if (!webS.isEmpty()) {
                 beneficiosF = Float.parseFloat(beneficiosS);
-                brandDAO.insert(nombreS,beneficiosF,fechaS,sedeS,webS,buleano,isinS);
+                brandDAO.insert(nombreS, beneficiosF, fechaS, sedeS, webS, buleano, isinS);
                 Stage stage = (Stage) addNewButton.getScene().getWindow();
                 stage.close();
                 hc.cargarDatosTabla();
-            }
-            else {
+            } else {
                 beneficiosF = Float.parseFloat(beneficiosS);
-                brandDAO.insert(nombreS,beneficiosF,fechaS,sedeS,webS,0,isinS);
+                brandDAO.insert(nombreS, beneficiosF, fechaS, sedeS, webS, 0, isinS);
                 Stage stage = (Stage) addNewButton.getScene().getWindow();
                 stage.close();
                 hc.cargarDatosTabla();
@@ -89,12 +87,12 @@ public class AddController {
 
 
     }
+
     public void cambioDep(ActionEvent actionEvent) {
-        if (deptvTogle.isSelected()){
-            buleano=1;
-        }
-        else {
-            buleano=0;
+        if (deptvTogle.isSelected()) {
+            buleano = 1;
+        } else {
+            buleano = 0;
         }
     }
 

@@ -94,10 +94,14 @@ public class ModController {
                 } else if (!webS.isEmpty()) {
                     beneficiosF = Float.parseFloat(beneficiosS);
                     brandDAO.update(id , nombreS,beneficiosF,fechaS,sedeS,webS,buleano,isinS);
+                    Stage stage = (Stage) cancelButton.getScene().getWindow();
+                    stage.close();
                 }
                 else {
                     beneficiosF = Float.parseFloat(beneficiosS);
                     brandDAO.update(id,nombreS,beneficiosF,fechaS,sedeS,webS,0,isinS);
+                    Stage stage = (Stage) cancelButton.getScene().getWindow();
+                    stage.close();
                 }
 
 

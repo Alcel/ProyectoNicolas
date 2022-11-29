@@ -4,6 +4,7 @@ import com.example.proyectonicolas.dao.GarmentDAO;
 import com.example.proyectonicolas.modelo.Brand;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 public class AddDetController {
     @javafx.fxml.FXML
@@ -35,9 +36,10 @@ public class AddDetController {
     public void closeWindow(ActionEvent actionEvent) {
     }
 
-    public void initialize(int num){
-        comp=num;
+    public void initialize(int num) {
+        comp = num;
     }
+
     @javafx.fxml.FXML
     public void addNew(ActionEvent actionEvent) {
 
@@ -50,17 +52,15 @@ public class AddDetController {
         String comS = comBox.getText();
 
 
-
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        if(beneficiosS.isEmpty()||fechaS.isEmpty()||nombreS.isEmpty()||comS.isEmpty()){
+        if (beneficiosS.isEmpty() || fechaS.isEmpty() || nombreS.isEmpty() || comS.isEmpty()) {
             alert.setTitle("Información");
             alert.setHeaderText("Ha de rellenar todos los campos");
             alert.setContentText("El campo web es opcional");
             alert.showAndWait().ifPresent(rs -> {
             });
-        }
-        else{
-            if(!beneficiosS.matches("^[1-9]\\d*.\\d*|0.\\d*[1-9]\\d*$")){
+        } else {
+            if (!beneficiosS.matches("^[1-9]\\d*.\\d*|0.\\d*[1-9]\\d*$")) {
                 alert.setTitle("Información");
                 alert.setHeaderText("Ha de introducir un numero positivo");
                 alert.setContentText("Como ejemplo: 100.910 o 1.0");
@@ -74,22 +74,23 @@ public class AddDetController {
                 alert.setContentText("Como ejemplo: 2001-02-05 o 1996-12-29");
                 alert.showAndWait().ifPresent(rs -> {
                 });
-            }
-            else {
+            } else {
                 beneficiosF = Float.parseFloat(beneficiosS);
 
-                garmentDAO.insert(nombreS,beneficiosF,fechaS,buleano,comS,comp); //Por aqui
+                garmentDAO.insert(nombreS, beneficiosF, fechaS, buleano, comS, comp);
+                Stage stage = (Stage) cancelButton.getScene().getWindow();
+                stage.close();
             }
 
 
         }
     }
+
     public void cambioDep(ActionEvent actionEvent) {
-        if (deptvTogle.isSelected()){
-            buleano=1;
-        }
-        else {
-            buleano=0;
+        if (deptvTogle.isSelected()) {
+            buleano = 1;
+        } else {
+            buleano = 0;
         }
     }
 }

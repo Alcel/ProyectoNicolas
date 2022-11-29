@@ -6,27 +6,31 @@ import com.example.proyectonicolas.modelo.Brand;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
+import javafx.stage.Screen;
+import javafx.stage.Stage;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
+
 import java.sql.Date;
+import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class HelloController {
 
-    private ObservableList <Brand> marcas;
-    private ObservableList <Brand> marcasAux;
+    private ObservableList<Brand> marcas;
+    private ObservableList<Brand> marcasAux;
 
-    private BrandDAO brandDAO= new BrandDAO();
+    private BrandDAO brandDAO = new BrandDAO();
     private Brand brandAux;
 
     @FXML
@@ -69,37 +73,50 @@ public class HelloController {
     @FXML
     private Button deleteButton;
 
+    private Executor exec;
 
-    public void initialize()  {
-
-        cargarDatosTabla();
-
-        brandAux = new Brand(0,"",0f,fecha,"","",0,"");
-        cargarGestorDobleCLick();
-
-    }
-
-    public void cargarDatosTabla () {
-
-        marcas = brandDAO.obtenerBrands();
-
+    public void initialize() {
         brandNumberC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("brandNumber"));
         brandNameC.setCellValueFactory(new PropertyValueFactory<Brand, String>("brandName"));
         earningsC.setCellValueFactory(new PropertyValueFactory<Brand, Float>("earnings"));
         fundationC.setCellValueFactory(new PropertyValueFactory<Brand, Date>("fundation"));
+
         headquartersC.setCellValueFactory(new PropertyValueFactory<Brand, String>("headquarters"));
         webC.setCellValueFactory(new PropertyValueFactory<Brand, String>("web"));
 
         isSportyC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("isSporty"));
         isinC.setCellValueFactory(new PropertyValueFactory<Brand, String>("isin"));
 
-        tvBrands.setItems(marcas);
+
+
+        brandAux = new Brand(0, "", 0f, fecha, "", "", 0, "");
+        cargarGestorDobleCLick();
+
+        exec = Executors.newCachedThreadPool((runnable) -> {
+            Thread t = new Thread (runnable);
+            t.setDaemon(true);
+            return t;
+        });
+
+        cargarDatosTabla();
     }
 
+    public void cargarDatosTabla() {
+        Task<List<Brand>> task = new Task<List<Brand>>(){
+            @Override
+            public ObservableList<Brand> call() throws Exception{
+                return brandDAO.obtenerBrands();
+            }
+        };
+        task.setOnFailed(e-> task.getException().printStackTrace());
+        task.setOnSucceeded(e-> tvBrands.setItems((ObservableList<Brand>) task.getValue()));
+        exec.execute(task);
+
+    }
 
     @FXML
     public void search(ActionEvent actionEvent) {
-        String idSearchBoxS =idSearchBox.getText();
+        String idSearchBoxS = idSearchBox.getText();
         String nameSearchBoxS = nameSearchBox.getText();
         String dateSearchInitialS = dateSearchInitial.getText();
         String dateSearchFinalS = dateSearchFinal.getText();
@@ -107,21 +124,20 @@ public class HelloController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
 
-        if(!idSearchBoxS.isEmpty()&&!idSearchBoxS.matches("[0-9]*")){
+        if (!idSearchBoxS.isEmpty() && !idSearchBoxS.matches("[0-9]*")) {
             //Informamos al usuario del error
             alert.setTitle("Información");
             alert.setHeaderText("En el campo id solo se han de introducir numeros enteros");
             alert.showAndWait().ifPresent(rs -> {
             });
-        }
-        else{
-            if(!dateSearchInitialS.isEmpty()&&!dateSearchInitialS.matches("((18|19|20)[0-9]{2}[\\-.](0[13578]|1[02])[\\-.](0[1-9]|[12][0-9]|3[01]))|(18|19|20)[0-9]{2}[\\-.](0[469]|11)[\\-.](0[1-9]|[12][0-9]|30)|(18|19|20)[0-9]{2}[\\-.](02)[\\-.](0[1-9]|1[0-9]|2[0-8])|(((18|19|20)(04|08|[2468][048]|[13579][26]))|2000)[\\-.](02)[\\-.]29")){
+        } else {
+            if (!dateSearchInitialS.isEmpty() && !dateSearchInitialS.matches("((18|19|20)[0-9]{2}[\\-.](0[13578]|1[02])[\\-.](0[1-9]|[12][0-9]|3[01]))|(18|19|20)[0-9]{2}[\\-.](0[469]|11)[\\-.](0[1-9]|[12][0-9]|30)|(18|19|20)[0-9]{2}[\\-.](02)[\\-.](0[1-9]|1[0-9]|2[0-8])|(((18|19|20)(04|08|[2468][048]|[13579][26]))|2000)[\\-.](02)[\\-.]29")) {
                 alert.setTitle("Información");
                 alert.setHeaderText("Tanto el campo fecha inicio como fecha final el formato a usar es el de Año-Mes-Dia");
                 alert.setContentText("Como ejemplo: 2000-04-01");
                 alert.showAndWait().ifPresent(rs -> {
                 });
-            } else if (!dateSearchFinalS.isEmpty()&&!dateSearchFinalS.matches("((18|19|20)[0-9]{2}[\\-.](0[13578]|1[02])[\\-.](0[1-9]|[12][0-9]|3[01]))|(18|19|20)[0-9]{2}[\\-.](0[469]|11)[\\-.](0[1-9]|[12][0-9]|30)|(18|19|20)[0-9]{2}[\\-.](02)[\\-.](0[1-9]|1[0-9]|2[0-8])|(((18|19|20)(04|08|[2468][048]|[13579][26]))|2000)[\\-.](02)[\\-.]29")) {
+            } else if (!dateSearchFinalS.isEmpty() && !dateSearchFinalS.matches("((18|19|20)[0-9]{2}[\\-.](0[13578]|1[02])[\\-.](0[1-9]|[12][0-9]|3[01]))|(18|19|20)[0-9]{2}[\\-.](0[469]|11)[\\-.](0[1-9]|[12][0-9]|30)|(18|19|20)[0-9]{2}[\\-.](02)[\\-.](0[1-9]|1[0-9]|2[0-8])|(((18|19|20)(04|08|[2468][048]|[13579][26]))|2000)[\\-.](02)[\\-.]29")) {
                 alert.setTitle("Información");
                 alert.setHeaderText("Tanto el campo fecha inicio como fecha final el formato a usar es el de Año-Mes-Dia");
                 alert.setContentText("Como ejemplo: 2000-04-01");
@@ -129,17 +145,17 @@ public class HelloController {
                 });
                 System.out.println(dateSearchFinalS.isEmpty());
             }
-                if (dateSearchInitialS.isEmpty()) {
-                    dateSearchInitialS = "0-0-0";
-                    System.out.println(dateSearchInitialS);
-                }
-                if (dateSearchFinalS.isEmpty()) {
-                    dateSearchFinalS = "9999-12-30";
-                }
+            if (dateSearchInitialS.isEmpty()) {
+                dateSearchInitialS = "0-0-0";
+                System.out.println(dateSearchInitialS);
+            }
+            if (dateSearchFinalS.isEmpty()) {
+                dateSearchFinalS = "9999-12-30";
+            }
 
 
         }
-        marcasAux = brandDAO.obtenerBrandsBusqueda(idSearchBoxS, nameSearchBoxS, dateSearchInitialS, dateSearchFinalS,buleano );
+        marcasAux = brandDAO.obtenerBrandsBusqueda(idSearchBoxS, nameSearchBoxS, dateSearchInitialS, dateSearchFinalS, buleano);
 
         brandNumberC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("brandNumber"));
         brandNameC.setCellValueFactory(new PropertyValueFactory<Brand, String>("brandName"));
@@ -155,11 +171,12 @@ public class HelloController {
 
     @FXML
     public void cambioDep(ActionEvent actionEvent) {
-        if (deptv.isSelected()){
-            buleano=1;
-        }
-        else {
-            buleano=0;
+        if (deptv.isSelected()) {
+            buleano = 1;
+            deptv.setText("Si");
+        } else {
+            buleano = 0;
+            deptv.setText("No");
         }
     }
 
@@ -174,10 +191,16 @@ public class HelloController {
             stage.setScene(scene);
             stage.setMinWidth(720);
             stage.setMinHeight(413);
-            stage.show();
-            stage.onCloseRequestProperty(); //Aqui
+            stage.showAndWait();
+            cargarDatosTabla();
 
 
+//            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+//            stage.setX((screenBounds.getWidth() - stage.getWidth()) / 3);
+//            stage.setY((screenBounds.getHeight() - stage.getHeight()) / 3);
+//            stage.wait();
+//            cargarDatosTabla();
+            //Intento: Erro = "current thread is not owner"
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -197,7 +220,9 @@ public class HelloController {
             stage.setScene(scene);
             stage.setMinWidth(720);
             stage.setMinHeight(413);
-            stage.show();
+            stage.showAndWait();
+            cargarDatosTabla();
+
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -207,35 +232,32 @@ public class HelloController {
 
     @FXML
     public void deleteRow(ActionEvent actionEvent) {
-        Brand marca= (Brand) tvBrands.getSelectionModel().getSelectedItem();
+        Brand marca = (Brand) tvBrands.getSelectionModel().getSelectedItem();
         brandDAO.delete(marca.getBrandNumber());
         cargarDatosTabla();
     }
 
-    private void cargarGestorDobleCLick () {
+    private void cargarGestorDobleCLick() {
 
         tvBrands.setRowFactory(tv -> {
             TableRow<Brand> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
-
                     brandAux.setBrandNumber(row.getItem().getBrandNumber());
                     brandAux.setBrandName(row.getItem().getBrandName());
                     brandAux.setEarnings(row.getItem().getEarnings());
                     brandAux.setFundation(row.getItem().getFundation());
                     brandAux.setHeadquarters(row.getItem().getHeadquarters());
-                    final int bul=row.getItem().getIsSporty();
-                    if (bul==0){
+                    final int bul = row.getItem().getIsSporty();
+                    if (bul == 0) {
                         brandAux.setSporty(false);
-                    }else {
+                    } else {
                         brandAux.setSporty(true);
                     }
-
                     brandAux.setWeb(row.getItem().getWeb());
                     brandAux.setIsin(row.getItem().getIsin());
                     System.out.println(brandAux.getBrandName());
                     openDet(brandAux.getBrandNumber());
-
                 }
             });
 
@@ -243,7 +265,7 @@ public class HelloController {
         });
     }
 
-    public void openDet(int num){
+    public void openDet(int num) {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("details-view.fxml"));
         Scene scene = null;
