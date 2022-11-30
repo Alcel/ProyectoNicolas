@@ -14,10 +14,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class DetailsController{
 
@@ -52,9 +56,21 @@ public class DetailsController{
 
     private int numero;
 
+    private Executor exec;
 
     public void initialize(int num) {
          numero = num;
+        numC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("clothesNumber"));
+        nameC.setCellValueFactory(new PropertyValueFactory<Brand, String>("clothesName"));
+        earningsC.setCellValueFactory(new PropertyValueFactory<Brand, Float>("earnings"));
+        launchC.setCellValueFactory(new PropertyValueFactory<Brand, Date>("launchDate"));
+        dispoC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("avalible"));
+        comC.setCellValueFactory(new PropertyValueFactory<Brand, String>("countryManufacture"));
+        exec = Executors.newCachedThreadPool((runnable) -> {
+            Thread t = new Thread (runnable);
+            t.setDaemon(true);
+            return t;
+        });
         cargarDatosTabla(numero);
 
     }
@@ -63,12 +79,6 @@ public class DetailsController{
 
         prendas =  garment.obtenerGarments(num);
 
-        numC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("clothesNumber"));
-        nameC.setCellValueFactory(new PropertyValueFactory<Brand, String>("clothesName"));
-        earningsC.setCellValueFactory(new PropertyValueFactory<Brand, Float>("earnings"));
-        launchC.setCellValueFactory(new PropertyValueFactory<Brand, Date>("launchDate"));
-        dispoC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("avalible"));
-        comC.setCellValueFactory(new PropertyValueFactory<Brand, String>("countryManufacture"));
 
         tvGarment.setItems(prendas);
     }
@@ -105,19 +115,20 @@ public class DetailsController{
             stage.setScene(scene);
             stage.setMinWidth(720);
             stage.setMinHeight(413);
+
             stage.showAndWait();
             cargarDatosTabla(numero);
-
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-
     @javafx.fxml.FXML
     public void deleteEdit(ActionEvent actionEvent) {
         Garment prenda = (Garment) tvGarment.getSelectionModel().getSelectedItem();
         garment.delete(prenda.getClothesNumber());
+        cargarDatosTabla(numero);
+
     }
 }

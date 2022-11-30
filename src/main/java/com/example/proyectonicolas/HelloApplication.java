@@ -16,7 +16,7 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Hello!");
         stage.setScene(scene);
-        stage.setMinWidth(720);
+        stage.setMinWidth(877);
         stage.setMinHeight(413);
         stage.show();
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();

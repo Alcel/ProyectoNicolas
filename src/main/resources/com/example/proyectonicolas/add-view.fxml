@@ -17,7 +17,7 @@
       <Button fx:id="resetButton" layoutX="248.0" layoutY="328.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
       <Button fx:id="cancelButton" layoutX="146.0" layoutY="328.0" mnemonicParsing="false" onAction="#closeWindow" text="Cancelar" />
       <Button fx:id="addNewButton" layoutX="364.0" layoutY="328.0" mnemonicParsing="false" onAction="#addNew" text="Insertar" />
-      <ToggleButton fx:id="deptvTogle" layoutX="364.0" layoutY="151.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="56.0" text="ToggleButton" />
+      <ToggleButton fx:id="deptvTogle" layoutX="364.0" layoutY="151.0" mnemonicParsing="false" onAction="#cambioDep" prefHeight="26.0" prefWidth="56.0" text="ToggleButton" />
       <Label layoutX="308.0" layoutY="156.0" text="Label" />
    </children>
 </AnchorPane>

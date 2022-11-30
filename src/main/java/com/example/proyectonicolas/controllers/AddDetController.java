@@ -36,6 +36,14 @@ public class AddDetController {
     public void closeWindow(ActionEvent actionEvent) {
     }
 
+    public void intialize(){
+
+    }
+
+
+
+
+
     public void initialize(int num) {
         comp = num;
     }
@@ -89,8 +97,10 @@ public class AddDetController {
     public void cambioDep(ActionEvent actionEvent) {
         if (deptvTogle.isSelected()) {
             buleano = 1;
+            deptvTogle.setText("No");
         } else {
             buleano = 0;
+            deptvTogle.setText("Si");
         }
     }
 }

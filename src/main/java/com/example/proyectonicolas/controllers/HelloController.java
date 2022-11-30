@@ -32,7 +32,6 @@ public class HelloController {
 
     private BrandDAO brandDAO = new BrandDAO();
     private Brand brandAux;
-
     @FXML
     private TableColumn brandNumberC;
     @FXML
@@ -121,6 +120,8 @@ public class HelloController {
         String dateSearchInitialS = dateSearchInitial.getText();
         String dateSearchFinalS = dateSearchFinal.getText();
 
+
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
 
@@ -171,8 +172,10 @@ public class HelloController {
 
     @FXML
     public void cambioDep(ActionEvent actionEvent) {
+
         if (deptv.isSelected()) {
             buleano = 1;
+
             deptv.setText("Si");
         } else {
             buleano = 0;

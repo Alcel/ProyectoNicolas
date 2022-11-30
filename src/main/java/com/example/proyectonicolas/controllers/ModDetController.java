@@ -97,12 +97,16 @@ public class ModDetController {
 
             }
         }
-        public void cambioDep(ActionEvent actionEvent) {
+    @FXML
+
+    public void cambioDep(ActionEvent actionEvent) {
             if (deptvTogle.isSelected()){
                 buleano=1;
+                deptvTogle.setText("Si");
             }
             else {
                 buleano=0;
+                deptvTogle.setText("No");
             }
         }
 

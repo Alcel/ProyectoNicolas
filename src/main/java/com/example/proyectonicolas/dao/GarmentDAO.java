@@ -17,7 +17,6 @@ public class GarmentDAO {
 
         ObservableList<Garment> datosResultadoConsulta = FXCollections.observableArrayList();
         try {
-            System.out.println(num);
             // Nos conectamos
             conexionBBDD = DriverManager.getConnection(servidor, usuario, passwd);
             String SQL = "SELECT * "
