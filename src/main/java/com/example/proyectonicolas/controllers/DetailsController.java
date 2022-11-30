@@ -9,10 +9,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -68,7 +70,7 @@ public class DetailsController{
     private Stage stage=new Stage();
 
     public void initialize(int num) {
-         numero = num;
+        numero = num;
         numC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("clothesNumber"));
         nameC.setCellValueFactory(new PropertyValueFactory<Brand, String>("clothesName"));
         earningsC.setCellValueFactory(new PropertyValueFactory<Brand, Float>("earnings"));
@@ -118,13 +120,13 @@ public class DetailsController{
         stage.setTitle("New Scene");
         //Create view in Java
         Label title = new Label("This is a pretty simple view!");
-         nombre = new TextField("Nombre");
-         fecha = new TextField("Fecha");
-         earnings = new TextField("Beneficios");
+        nombre = new TextField("Nombre");
+        fecha = new TextField("Fecha");
+        earnings = new TextField("Beneficios");
         com = new TextField("COM");
         deptvTogle= new ToggleButton("Si");
 
-         añadir = new Button("OK");
+        añadir = new Button("OK");
         Button editor = new Button("Edd");
         Button eliminar = new Button("Del");
 
@@ -134,10 +136,10 @@ public class DetailsController{
             addNew();
         });
         deptvTogle.setOnAction(event -> {
-            addNew();
+            cambioDep();
         });
 
-        VBox containerV1 = new VBox(title,nombre,fecha,earnings,com);
+        VBox containerV1 = new VBox(title,nombre,fecha,earnings,com,deptvTogle);
         HBox containerH1 = new HBox(eliminar,editor,añadir);
         VBox container = new VBox(containerV1,containerH1);
 
@@ -147,33 +149,15 @@ public class DetailsController{
         container.setAlignment(Pos.CENTER);
 //Set view in window
         stage.setScene(new Scene(container));
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.setMinWidth(720);
+        stage.setMinHeight(413);
+        stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
 //Launch
 
-        /*
-            GridPane gridpane = new GridPane();
-            ColumnConstraints column1 = new ColumnConstraints(100,100,Double.MAX_VALUE);
-            column1.setHgrow(Priority.ALWAYS);
-            ColumnConstraints column2 = new ColumnConstraints(100);
-            gridpane.getColumnConstraints().addAll(column1, column2);
-            Stage stage = new Stage();
-            Group newRoot = new Group();
-            Scene scene = new Scene(gridpane, 300, 200);
-            stage.setScene(scene);
-            //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AddDet-view.fxml"));
-            //OLD
-            //Scene scene = new Scene(root, 320, 240);
-            //AddDetController addDetCont = (AddDetController)  fxmlLoader.getController();
-            //addDetCont.initialize(numero);
-            //OLD
 
-            stage.setTitle("Hello!");
-            stage.setScene(scene);
-            stage.setMinWidth(720);
-            stage.setMinHeight(413);*/
-
-
-            stage.showAndWait();
-            cargarDatosTabla(numero);
+        stage.showAndWait();
+        cargarDatosTabla(numero);
 
 
     }
@@ -181,8 +165,16 @@ public class DetailsController{
     @javafx.fxml.FXML
     public void deleteEdit(ActionEvent actionEvent) {
         Garment prenda = (Garment) tvGarment.getSelectionModel().getSelectedItem();
-        garment.delete(prenda.getClothesNumber());
-        cargarDatosTabla(numero);
+        Alert eleccion = new Alert(Alert.AlertType.CONFIRMATION);
+        eleccion.setTitle("Alerta");
+        eleccion.setHeaderText("¿Esta seguro de que quiere eliminar?");
+        eleccion.showAndWait().ifPresent(type -> {
+            if(type==ButtonType.OK){
+                garment.delete(prenda.getClothesNumber());
+                cargarDatosTabla(numero);}
+        });
+
+
 
     }
     public void addNew() {
@@ -229,7 +221,7 @@ public class DetailsController{
 
         }
     }
-    public void cambioDep(ActionEvent actionEvent) {
+    public void cambioDep() {
         if (deptvTogle.isSelected()) {
             buleano = 1;
             deptvTogle.setText("No");

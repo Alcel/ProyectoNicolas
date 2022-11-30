@@ -16,12 +16,14 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Hello!");
         stage.setScene(scene);
-        stage.setMinWidth(877);
+        stage.setMinWidth(1000);
         stage.setMinHeight(413);
+
         stage.show();
+
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-        stage.setX((screenBounds.getWidth() - stage.getWidth()) / 3);
-        stage.setY((screenBounds.getHeight() - stage.getHeight()) / 3);
+        stage.setX((screenBounds.getWidth() - stage.getWidth()) / 4);
+        stage.setY((screenBounds.getHeight() - stage.getHeight()) / 4);
     }
 
     public static void main(String[] args) {

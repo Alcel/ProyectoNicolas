@@ -10,58 +10,126 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectonicolas.controllers.HelloController">
+<GridPane fx:id="gridRoot" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@estilos/estilos.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectonicolas.controllers.HelloController">
    <columnConstraints>
-      <ColumnConstraints hgrow="ALWAYS" maxWidth="288.0000244140625" minWidth="10.0" prefWidth="272.8000030517578" />
-      <ColumnConstraints hgrow="ALWAYS" maxWidth="296.7999633789062" minWidth="58.39996337890628" prefWidth="76.79999694824221" />
-      <ColumnConstraints maxWidth="240.79996337890628" minWidth="6.4000244140625" prefWidth="139.20001220703125" />
-      <ColumnConstraints maxWidth="208.0" minWidth="10.0" prefWidth="169.60004272460935" />
-      <ColumnConstraints hgrow="ALWAYS" maxWidth="420.20001220703125" minWidth="10.0" prefWidth="217.60000000000002" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="288.0000244140625" minWidth="10.0" percentWidth="30.0" prefWidth="250.0" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="296.7999633789062" minWidth="58.39996337890628" percentWidth="17.5" prefWidth="76.79999694824221" />
+      <ColumnConstraints maxWidth="240.79996337890628" minWidth="6.4000244140625" percentWidth="17.5" prefWidth="139.20001220703125" />
+      <ColumnConstraints maxWidth="208.0" minWidth="10.0" percentWidth="17.5" prefWidth="169.60004272460935" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="420.20001220703125" minWidth="10.0" percentWidth="17.5" prefWidth="217.60000000000002" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+      <RowConstraints minHeight="10.0" percentHeight="80.0" vgrow="ALWAYS" />
+      <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="ALWAYS" />
    </rowConstraints>
    <children>
-      <GridPane fx:id="gridFiltros" prefHeight="263.0" prefWidth="253.0" stylesheets="@estilos/estilos.css">
+      <GridPane fx:id="gridFiltros" prefHeight="263.0" prefWidth="253.0" stylesheets="@estilos/estilos.css" GridPane.rowSpan="2">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.0" minWidth="10.0" prefWidth="84.0" />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
+          <ColumnConstraints hgrow="ALWAYS" maxWidth="84.0" minWidth="10.0" percentWidth="35.0" prefWidth="84.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.19998779296874" minWidth="0.0" percentWidth="30.0" prefWidth="57.59998168945312" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="139.2" minWidth="5.600006103515625" percentWidth="35.0" prefWidth="81.60001831054689" />
+            <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+            <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints />
-          <RowConstraints />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="57.20000991821289" minHeight="40.39999160766602" percentHeight="25.0" prefHeight="57.20000991821289" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="72.0" minHeight="4.79998779296875" percentHeight="25.0" prefHeight="60.8000244140625" />
+          <RowConstraints maxHeight="45.0" minHeight="0.0" percentHeight="25.0" prefHeight="11.199975585937509" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" percentHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField fx:id="idSearchBox" prefHeight="25.0" prefWidth="86.0" promptText="Busca por id" GridPane.rowIndex="2" />
-            <TextField fx:id="nameSearchBox" prefHeight="25.0" prefWidth="118.0" promptText="Busca por nombre" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <TextField fx:id="dateSearchInitial" prefHeight="25.0" prefWidth="86.0" promptText="Busca por id" GridPane.rowIndex="4" />
-            <ToggleButton fx:id="deptv" mnemonicParsing="false" onAction="#cambioDep" text="No" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" />
-            <Button fx:id="searchButton" mnemonicParsing="false" onAction="#search" prefHeight="26.0" prefWidth="66.0" text="Buscar" GridPane.rowIndex="6" />
-            <TextField fx:id="dateSearchFinal" prefHeight="25.0" prefWidth="86.0" promptText="Busca por id" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <Label text="Periodo -&gt;" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
-            <Label text="id=" GridPane.halignment="CENTER" />
-            <Label text="Nombre" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <Label text="¿Es una marca deportiva?" GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.rowIndex="4" GridPane.valignment="TOP" />
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="idLabel" text="ID">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="15.0" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="idSearchBox" prefHeight="25.0" prefWidth="86.0" promptText="Busca por id">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="15.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <Button fx:id="searchButton" mnemonicParsing="false" onAction="#search" prefHeight="26.0" prefWidth="66.0" text="Buscar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="2" GridPane.rowSpan="2">
+               <children>
+                  <Label fx:id="dateLabel" prefHeight="18.0" prefWidth="60.0" text="Periodo">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="15.0" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="nameSearchBox" prefHeight="25.0" prefWidth="118.0" promptText="Fecha Inicial">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="15.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="dateSearchFinal" prefHeight="25.0" prefWidth="86.0" promptText="Fecha FInal">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="15.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+               <children>
+                  <Label fx:id="nameLabel" text="Nombre">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="15.0" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="dateSearchInitial" prefHeight="25.0" prefWidth="86.0" promptText="Busca por id">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="15.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1">
+               <children>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label fx:id="questionLabel" text="¿Es una marca deportiva?" GridPane.halignment="CENTER">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <ToggleButton fx:id="deptv" mnemonicParsing="false" onAction="#cambioDep" text="No" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </VBox>
          </children>
          <GridPane.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            <Insets right="20.0" />
          </GridPane.margin>
       </GridPane>
-      <Button fx:id="addButton" mnemonicParsing="false" onAction="#add" prefHeight="18.0" prefWidth="52.0" text="➕" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-      <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteRow" prefHeight="25.0" prefWidth="37.0" text="🗑" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-      <Button fx:id="editButton" mnemonicParsing="false" onAction="#openEdit" text="Button" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <Button fx:id="addButton" mnemonicParsing="false" onAction="#add" prefHeight="18.0" prefWidth="52.0" text="➕" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteRow" prefHeight="25.0" prefWidth="37.0" text="🗑" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <Button fx:id="editButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#openEdit" text="Edit" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
       <TableView fx:id="tvBrands" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="277.0" prefWidth="577.0" GridPane.columnIndex="1" GridPane.columnSpan="4">
         <columns>
           <TableColumn fx:id="brandNumberC" prefWidth="51.0" text="Nº" />

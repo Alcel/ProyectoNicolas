@@ -12,10 +12,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -189,21 +191,19 @@ public class HelloController {
 
             Stage stage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("add-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-            stage.setTitle("Hello!");
+            Scene scene = new Scene(fxmlLoader.load(), 720, 413);
             stage.setScene(scene);
+            stage.setTitle("Hello!");
+            stage.initModality(Modality.WINDOW_MODAL);
             stage.setMinWidth(720);
             stage.setMinHeight(413);
+            stage.centerOnScreen();
+            stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
+
+
             stage.showAndWait();
             cargarDatosTabla();
 
-
-//            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-//            stage.setX((screenBounds.getWidth() - stage.getWidth()) / 3);
-//            stage.setY((screenBounds.getHeight() - stage.getHeight()) / 3);
-//            stage.wait();
-//            cargarDatosTabla();
-            //Intento: Erro = "current thread is not owner"
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -212,22 +212,31 @@ public class HelloController {
 
     @FXML
     public void openEdit(ActionEvent actionEvent) {
-
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         try {
             Stage stage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mod-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+            Scene scene = new Scene(fxmlLoader.load(), 720, 413);
             ModController modcont = (ModController) fxmlLoader.getController();
             modcont.initialize((Brand) tvBrands.getSelectionModel().getSelectedItem());
+
             stage.setTitle("Hello!");
             stage.setScene(scene);
+            stage.initModality(Modality.WINDOW_MODAL);
             stage.setMinWidth(720);
             stage.setMinHeight(413);
+            stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
             stage.showAndWait();
             cargarDatosTabla();
 
 
-        } catch (IOException e) {
+        }catch(NullPointerException npe){
+            alert.setTitle("Información");
+            alert.setHeaderText("Ha de elegir una fila a editar");
+            alert.showAndWait().ifPresent(rs -> {
+            });
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -236,8 +245,17 @@ public class HelloController {
     @FXML
     public void deleteRow(ActionEvent actionEvent) {
         Brand marca = (Brand) tvBrands.getSelectionModel().getSelectedItem();
-        brandDAO.delete(marca.getBrandNumber());
-        cargarDatosTabla();
+        Alert eleccion = new Alert(Alert.AlertType.CONFIRMATION);
+        eleccion.setTitle("Alerta");
+        eleccion.setHeaderText("¿Esta seguro de que quiere eliminar?");
+        eleccion.showAndWait().ifPresent(type -> {
+            if(type==ButtonType.OK){
+            brandDAO.delete(marca.getBrandNumber());
+                cargarDatosTabla();}
+        });
+
+
+
     }
 
     private void cargarGestorDobleCLick() {
@@ -281,8 +299,10 @@ public class HelloController {
         detcont.initialize(num);
         stage.setTitle("Hello!");
         stage.setScene(scene);
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setMinWidth(720);
         stage.setMinHeight(413);
+
         stage.show();
     }
 }

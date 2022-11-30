@@ -1,4 +1,35 @@
 #gridFiltros{
-    -fx-border-color: blue;
-    -fx-border-width: 5x;
+    -fx-background-color: #4a59ff;
+
+}
+
+#gridRoot{
+    -fx-background-color: #f6f7fd;
+}
+
+#questionLabel{
+    -fx-text-fill:#f1efe9;
+    -fx-font-size: 14.0;
+    -fx-font-weight: bold;
+
+}
+#idLabel{
+    -fx-text-fill:#f1efe9;
+    -fx-font-size: 14.0;
+    -fx-font-weight: bold;
+}
+#nameLabel{
+    -fx-text-fill:#f1efe9;
+    -fx-font-size: 14.0;
+    -fx-font-weight: bold;
+}
+
+#dateLabel{
+    -fx-text-fill:#f1efe9;
+    -fx-font-size: 14.0;
+    -fx-font-weight: bold;
+}
+
+#addButton{
+
 }
