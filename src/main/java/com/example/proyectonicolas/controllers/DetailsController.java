@@ -67,7 +67,7 @@ public class DetailsController{
 
     private int buleano;
 
-    private Stage stage=new Stage();
+
 
     public void initialize(int num) {
         numero = num;
@@ -94,6 +94,8 @@ public class DetailsController{
     }
     @javafx.fxml.FXML
     public void openEdit(ActionEvent actionEvent) {
+         Stage stage=new Stage();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
         try {
 
@@ -101,14 +103,22 @@ public class DetailsController{
             Scene scene = new Scene(fxmlLoader.load(), 320, 240);
             ModDetController modcont = (ModDetController) fxmlLoader.getController();
             modcont.initialize((Garment) tvGarment.getSelectionModel().getSelectedItem());
-            stage.setTitle("Hello!");
+            stage.setTitle("IWear - Ropa - Edición");
             stage.setScene(scene);
             stage.setMinWidth(720);
             stage.setMinHeight(413);
+            stage.setResizable(false);
             stage.showAndWait();
             cargarDatosTabla(numero);
 
-        } catch (IOException e) {
+        }catch(NullPointerException npe){
+            alert.setTitle("Información");
+            alert.setHeaderText("Ha de elegir una fila a editar");
+            alert.showAndWait().ifPresent(rs -> {
+            });
+
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -116,8 +126,9 @@ public class DetailsController{
     @javafx.fxml.FXML
     public void addEdit(ActionEvent actionEvent) {
         //Create Stage
+        Stage stage=new Stage();
 
-        stage.setTitle("New Scene");
+        stage.setTitle("IWear - Ropa - Añadir");
         //Create view in Java
         Label title = new Label("This is a pretty simple view!");
         nombre = new TextField("Nombre");
@@ -128,20 +139,28 @@ public class DetailsController{
 
         añadir = new Button("OK");
         Button editor = new Button("Edd");
-        Button eliminar = new Button("Del");
+
 
 
 
         añadir.setOnAction(event -> {
             addNew();
+            stage.close();
         });
         deptvTogle.setOnAction(event -> {
             cambioDep();
         });
 
-        VBox containerV1 = new VBox(title,nombre,fecha,earnings,com,deptvTogle);
-        HBox containerH1 = new HBox(eliminar,editor,añadir);
-        VBox container = new VBox(containerV1,containerH1);
+
+        Label pregunta = new Label("¿esto?");
+        VBox containerV1 = new VBox(title,nombre,fecha,earnings,com);
+        HBox containerH1 = new HBox(añadir);
+        HBox containerH2 = new HBox(pregunta,deptvTogle);
+        VBox container = new VBox(containerV1,containerH2,containerH1);
+        containerV1.setSpacing(10);
+        containerV1.setSpacing(10);
+        container.setMinWidth(700);
+        container.setMinHeight(400);
 
 //Style container
         container.setSpacing(15);
@@ -154,7 +173,7 @@ public class DetailsController{
         stage.setMinHeight(413);
         stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
 //Launch
-
+        stage.setResizable(false);
 
         stage.showAndWait();
         cargarDatosTabla(numero);
@@ -164,20 +183,27 @@ public class DetailsController{
 
     @javafx.fxml.FXML
     public void deleteEdit(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
         Garment prenda = (Garment) tvGarment.getSelectionModel().getSelectedItem();
         Alert eleccion = new Alert(Alert.AlertType.CONFIRMATION);
         eleccion.setTitle("Alerta");
         eleccion.setHeaderText("¿Esta seguro de que quiere eliminar?");
+        try{
         eleccion.showAndWait().ifPresent(type -> {
             if(type==ButtonType.OK){
                 garment.delete(prenda.getClothesNumber());
                 cargarDatosTabla(numero);}
-        });
-
-
-
+        });}
+        catch(NullPointerException npe) {
+            alert.setTitle("Información");
+            alert.setHeaderText("Ha de elegir una fila a eliminar");
+            alert.showAndWait().ifPresent(rs -> {
+            });
+        }
     }
     public void addNew() {
+         Stage stage=new Stage();
 
         GarmentDAO garmentDAO = new GarmentDAO();
         String nombreS = nombre.getText();

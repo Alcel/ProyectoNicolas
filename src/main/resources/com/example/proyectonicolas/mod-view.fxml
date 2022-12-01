@@ -1,23 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectonicolas.controllers.ModController">
+
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectonicolas.controllers.ModController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.33" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.33" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.33" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
-      <TextField fx:id="webBox" layoutX="79.0" layoutY="200.0" prefHeight="26.0" prefWidth="415.0" promptText="Web" />
-      <TextField fx:id="headquartersBox" layoutX="307.0" layoutY="55.0" prefHeight="26.0" prefWidth="186.0" promptText="Sede" />
-      <TextField fx:id="earningsBox" layoutX="79.0" layoutY="152.0" prefHeight="26.0" prefWidth="185.0" promptText="Beneficios (en miles de millones)" />
-      <TextField fx:id="nameBox" layoutX="79.0" layoutY="55.0" prefHeight="26.0" prefWidth="186.0" promptText="Nombre" />
-      <TextField fx:id="dateBox" layoutX="79.0" layoutY="104.0" prefHeight="26.0" prefWidth="186.0" promptText="Fundacion AAA-MM-DD" />
-      <TextField fx:id="isinBox" layoutX="307.0" layoutY="117.0" prefHeight="26.0" prefWidth="186.0" promptText="Codigo ISIN" />
-      <Button fx:id="resetButton" layoutX="248.0" layoutY="328.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
-      <Button fx:id="cancelButton" layoutX="146.0" layoutY="328.0" mnemonicParsing="false" onAction="#closeWindow" text="Cancelar" />
-      <Button fx:id="addNewButton" layoutX="364.0" layoutY="328.0" mnemonicParsing="false" onAction="#addNew" text="Insertar" />
-      <ToggleButton fx:id="deptvTogle" layoutX="364.0" layoutY="151.0" mnemonicParsing="false" onAction="#cambioDep" prefHeight="26.0" prefWidth="56.0" text="No" />
-      <Label layoutX="308.0" layoutY="156.0" text="Label" />
+      <TextField fx:id="webBox" prefHeight="26.0" prefWidth="415.0" promptText="Web" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </GridPane.margin>
+      </TextField>
+      <TextField fx:id="headquartersBox" prefHeight="26.0" prefWidth="186.0" promptText="Sede" GridPane.columnIndex="2">
+         <GridPane.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </GridPane.margin>
+      </TextField>
+      <TextField fx:id="earningsBox" prefHeight="26.0" prefWidth="185.0" promptText="Beneficios (en miles de millones)" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </GridPane.margin>
+      </TextField>
+      <TextField fx:id="nameBox" prefHeight="26.0" prefWidth="186.0" promptText="Nombre">
+         <GridPane.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </GridPane.margin>
+      </TextField>
+      <TextField fx:id="dateBox" prefHeight="26.0" prefWidth="186.0" promptText="Fundacion AAA-MM-DD" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </GridPane.margin>
+      </TextField>
+      <TextField fx:id="isinBox" prefHeight="26.0" prefWidth="186.0" promptText="Codigo ISIN" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </GridPane.margin>
+      </TextField>
+      <Button fx:id="resetButton" mnemonicParsing="false" onAction="#reset" text="Reset" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+      <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#closeWindow" text="Cancelar" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+      <Button fx:id="addNewButton" mnemonicParsing="false" onAction="#addNew" text="Insertar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+      <ToggleButton fx:id="deptvTogle" mnemonicParsing="false" onAction="#cambioDep" prefHeight="26.0" prefWidth="56.0" text="No" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+      <Label text="¿Deportiva?" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="15.0" />
+         </GridPane.margin>
+      </Label>
    </children>
-</AnchorPane>
+</GridPane>

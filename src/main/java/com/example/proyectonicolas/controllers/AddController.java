@@ -88,7 +88,6 @@ public class AddController {
 
         if (deptvTogle.isSelected()) {
             buleano = 1;
-
             deptvTogle.setText("Si");
         } else {
             buleano = 0;

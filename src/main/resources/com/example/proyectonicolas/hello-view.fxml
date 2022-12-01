@@ -9,6 +9,7 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -69,7 +70,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="nameSearchBox" prefHeight="25.0" prefWidth="118.0" promptText="Fecha Inicial">
+                  <TextField fx:id="dateSearchInitial" prefHeight="25.0" prefWidth="86.0" promptText="Fecha inicial">
                      <VBox.margin>
                         <Insets bottom="5.0" left="15.0" top="5.0" />
                      </VBox.margin>
@@ -91,7 +92,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="dateSearchInitial" prefHeight="25.0" prefWidth="86.0" promptText="Busca por id">
+                  <TextField fx:id="nameSearchBox" prefHeight="25.0" prefWidth="118.0" promptText="Nombre">
                      <VBox.margin>
                         <Insets bottom="5.0" left="15.0" top="5.0" />
                      </VBox.margin>
@@ -127,9 +128,6 @@
             <Insets right="20.0" />
          </GridPane.margin>
       </GridPane>
-      <Button fx:id="addButton" mnemonicParsing="false" onAction="#add" prefHeight="18.0" prefWidth="52.0" text="➕" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-      <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteRow" prefHeight="25.0" prefWidth="37.0" text="🗑" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-      <Button fx:id="editButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#openEdit" text="Edit" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
       <TableView fx:id="tvBrands" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="277.0" prefWidth="577.0" GridPane.columnIndex="1" GridPane.columnSpan="4">
         <columns>
           <TableColumn fx:id="brandNumberC" prefWidth="51.0" text="Nº" />
@@ -148,5 +146,15 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
+      <HBox fx:id="buttonPanel" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+         <children>
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#add" prefHeight="18.0" prefWidth="52.0" stylesheets="@estilos/estilos.css" text="➕" />
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteRow" prefHeight="25.0" prefWidth="37.0" stylesheets="@estilos/estilos.css" text="-" />
+            <Button fx:id="editButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#openEdit" stylesheets="@estilos/estilos.css" text="Edit" />
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+      </HBox>
    </children>
 </GridPane>

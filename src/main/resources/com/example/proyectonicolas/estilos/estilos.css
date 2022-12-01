@@ -1,4 +1,4 @@
-#gridFiltros{
+#gridFiltros,#buttonPanel{
     -fx-background-color: #4a59ff;
 
 }
@@ -30,6 +30,9 @@
     -fx-font-weight: bold;
 }
 
-#addButton{
-
+#addButton,#deleteButton,#editButton{
+    -fx-background-radius: 30 30 30 30;
+    -fx-scale-x: 1.2px;
+    -fx-scale-y: 1.2px;
 }
+

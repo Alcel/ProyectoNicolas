@@ -90,6 +90,7 @@ public class HelloController {
 
 
 
+
         brandAux = new Brand(0, "", 0f, fecha, "", "", 0, "");
         cargarGestorDobleCLick();
 
@@ -149,7 +150,7 @@ public class HelloController {
                 System.out.println(dateSearchFinalS.isEmpty());
             }
             if (dateSearchInitialS.isEmpty()) {
-                dateSearchInitialS = "0-0-0";
+                dateSearchInitialS = "0000-00-00";
                 System.out.println(dateSearchInitialS);
             }
             if (dateSearchFinalS.isEmpty()) {
@@ -193,12 +194,13 @@ public class HelloController {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("add-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 720, 413);
             stage.setScene(scene);
-            stage.setTitle("Hello!");
+            stage.setTitle("IWear - Añadir");
             stage.initModality(Modality.WINDOW_MODAL);
             stage.setMinWidth(720);
             stage.setMinHeight(413);
             stage.centerOnScreen();
             stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
+            stage.setResizable(false);
 
 
             stage.showAndWait();
@@ -220,11 +222,12 @@ public class HelloController {
             ModController modcont = (ModController) fxmlLoader.getController();
             modcont.initialize((Brand) tvBrands.getSelectionModel().getSelectedItem());
 
-            stage.setTitle("Hello!");
+            stage.setTitle("IWear - Edición");
             stage.setScene(scene);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.setMinWidth(720);
             stage.setMinHeight(413);
+            stage.setResizable(false);
             stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
             stage.showAndWait();
             cargarDatosTabla();
@@ -244,15 +247,24 @@ public class HelloController {
 
     @FXML
     public void deleteRow(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         Brand marca = (Brand) tvBrands.getSelectionModel().getSelectedItem();
         Alert eleccion = new Alert(Alert.AlertType.CONFIRMATION);
         eleccion.setTitle("Alerta");
         eleccion.setHeaderText("¿Esta seguro de que quiere eliminar?");
+        try{
         eleccion.showAndWait().ifPresent(type -> {
             if(type==ButtonType.OK){
             brandDAO.delete(marca.getBrandNumber());
                 cargarDatosTabla();}
-        });
+        });}
+        catch(NullPointerException npe){
+            alert.setTitle("Información");
+            alert.setHeaderText("Ha de elegir una fila a eliminar");
+            alert.showAndWait().ifPresent(rs -> {
+            });
+
+        }
 
 
 
@@ -297,12 +309,11 @@ public class HelloController {
         }
         DetailsController detcont = (DetailsController) fxmlLoader.getController();
         detcont.initialize(num);
-        stage.setTitle("Hello!");
+        stage.setTitle("IWear - Ropa");
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setMinWidth(720);
         stage.setMinHeight(413);
-
         stage.show();
     }
 }

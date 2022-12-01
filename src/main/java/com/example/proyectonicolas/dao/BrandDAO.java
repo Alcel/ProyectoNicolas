@@ -75,17 +75,17 @@ public class BrandDAO {
                  SQL="SELECT * "
                         + "FROM brands "+"WHERE brandNumber ="+Integer.parseInt(numero);
             }
-            if(numero.isEmpty()&&!nombre.isEmpty()){ //Solo nombre
+            if(numero.isEmpty()&&!nombre.isEmpty()){ //Con nombre
                 SQL="SELECT * "
                         + "FROM brands "+"WHERE brandName ='"+nombre+"' AND fundation BETWEEN "+"'"+cajaFechaI+"'"+"AND"+"'"+cajaFechaF +"' AND isSporty ="+deptiv;
             }
-            if(numero.isEmpty()&&nombre.isEmpty()){ //Solo nombre
+            if(numero.isEmpty()&&nombre.isEmpty()){ //Sin nombre
                 SQL="SELECT * "
                         + "FROM brands "+"WHERE fundation BETWEEN "+"'"+cajaFechaI+"'"+"AND"+"'"+cajaFechaF +"' AND isSporty ="+deptiv;
             }
 
 
-
+            System.out.println(SQL);
             // Ejecutamos la consulta y nos devuelve una matriz de filas (registros) y columnas (datos)
             ResultSet resultadoConsulta = conexionBBDD.createStatement().executeQuery(SQL);
 
