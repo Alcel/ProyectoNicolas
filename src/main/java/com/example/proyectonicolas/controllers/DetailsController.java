@@ -37,21 +37,13 @@ public class DetailsController{
     @javafx.fxml.FXML
     private TableColumn comC;
 
-    private Garment garAux;
-
     private GarmentDAO garment= new GarmentDAO();
 
     private ObservableList<Garment> prendas;
 
-    private ObservableList <Garment> prendasAux;
     @javafx.fxml.FXML
     private TableView tvGarment;
-    @javafx.fxml.FXML
-    private Button garmentNew;
-    @javafx.fxml.FXML
-    private Button garmentDelete;
-    @javafx.fxml.FXML
-    private Button garmentEdit;
+
 
     private int numero;
 
@@ -63,7 +55,7 @@ public class DetailsController{
     private TextField com;
     private ToggleButton tb;
     private ToggleButton deptvTogle;
-    private Button añadir;
+    private Button add;
 
     private int buleano;
 
@@ -105,7 +97,7 @@ public class DetailsController{
             modcont.initialize((Garment) tvGarment.getSelectionModel().getSelectedItem());
             stage.setTitle("IWear - Ropa - Edición");
             stage.setScene(scene);
-            stage.setMinWidth(720);
+            stage.setMinWidth(600);
             stage.setMinHeight(413);
             stage.setResizable(false);
             stage.showAndWait();
@@ -130,49 +122,52 @@ public class DetailsController{
 
         stage.setTitle("IWear - Ropa - Añadir");
         //Create view in Java
-        Label title = new Label("This is a pretty simple view!");
-        nombre = new TextField("Nombre");
-        fecha = new TextField("Fecha");
-        earnings = new TextField("Beneficios");
-        com = new TextField("COM");
-        deptvTogle= new ToggleButton("Si");
 
-        añadir = new Button("OK");
-        Button editor = new Button("Edd");
+        nombre = new TextField();
+        nombre.setPromptText("Nombre");
+        fecha = new TextField();
+        fecha.setPromptText("Fecha AAAA-MM-DD");
+        earnings = new TextField();
+        earnings.setPromptText("Beneficios (en miles de millones)");
+        com = new TextField();
+        com.setPromptText("País de fabricación");
+
+        deptvTogle= new ToggleButton("No");
+
+        add = new Button("Añadir");
 
 
-
-
-        añadir.setOnAction(event -> {
+        add.setOnAction(event -> {
             addNew();
-            stage.close();
         });
         deptvTogle.setOnAction(event -> {
             cambioDep();
         });
 
 
-        Label pregunta = new Label("¿esto?");
-        VBox containerV1 = new VBox(title,nombre,fecha,earnings,com);
-        HBox containerH1 = new HBox(añadir);
+        Label pregunta = new Label("¿Está disponible?");
+
+        nombre.setFocusTraversable(false);
+        fecha.setFocusTraversable(false);
+        earnings.setFocusTraversable(false);
+        com.setFocusTraversable(false);
+        VBox containerV1 = new VBox(nombre,fecha,earnings,com);
+        HBox containerH1 = new HBox(add);
         HBox containerH2 = new HBox(pregunta,deptvTogle);
         VBox container = new VBox(containerV1,containerH2,containerH1);
         containerV1.setSpacing(10);
         containerV1.setSpacing(10);
-        container.setMinWidth(700);
+        container.setMinWidth(400);
         container.setMinHeight(400);
 
-//Style container
         container.setSpacing(15);
         container.setPadding(new Insets(25));
         container.setAlignment(Pos.CENTER);
-//Set view in window
         stage.setScene(new Scene(container));
         stage.initModality(Modality.WINDOW_MODAL);
-        stage.setMinWidth(720);
-        stage.setMinHeight(413);
+        stage.setMinWidth(400);
+        stage.setMinHeight(400);
         stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
-//Launch
         stage.setResizable(false);
 
         stage.showAndWait();
@@ -250,10 +245,10 @@ public class DetailsController{
     public void cambioDep() {
         if (deptvTogle.isSelected()) {
             buleano = 1;
-            deptvTogle.setText("No");
+            deptvTogle.setText("Si");
         } else {
             buleano = 0;
-            deptvTogle.setText("Si");
+            deptvTogle.setText("No");
         }
     }
 }

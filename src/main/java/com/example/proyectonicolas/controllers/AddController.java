@@ -32,7 +32,6 @@ public class AddController {
     @FXML
     private Button resetButton;
 
-
     private HelloController hc;
 
     @FXML

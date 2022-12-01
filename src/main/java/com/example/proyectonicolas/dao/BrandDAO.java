@@ -1,11 +1,11 @@
 package com.example.proyectonicolas.dao;
 
-import com.example.proyectonicolas.modelo.Garment;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
 import com.example.proyectonicolas.modelo.Brand;
+import javafx.scene.control.Alert;
 
 public class BrandDAO {
     private final String servidor = "jdbc:mariadb://localhost:5555/noinch?useSSL=false";
@@ -40,7 +40,7 @@ public class BrandDAO {
                         resultadoConsulta.getInt("isSporty"),
                         resultadoConsulta.getString("isin"))
                 );
-                System.out.println("Row [1] added " + resultadoConsulta.toString());
+                System.out.println("Row [1] added " + resultadoConsulta);
             }
             conexionBBDD.close();
         } catch (Exception e) {
@@ -142,7 +142,13 @@ public class BrandDAO {
             pst.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Información");
+            alert.setHeaderText("No puede incluir caracteres especiales");
+            alert.setContentText("Como por ejemplo: '´`ç");
+            alert.showAndWait().ifPresent(rs -> {
+            });
+
         }
     }
 

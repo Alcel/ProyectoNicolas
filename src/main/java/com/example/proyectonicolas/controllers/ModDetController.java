@@ -1,8 +1,7 @@
 package com.example.proyectonicolas.controllers;
 
-import com.example.proyectonicolas.dao.BrandDAO;
+
 import com.example.proyectonicolas.dao.GarmentDAO;
-import com.example.proyectonicolas.modelo.Brand;
 import com.example.proyectonicolas.modelo.Garment;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,14 +20,12 @@ public class ModDetController {
         @FXML
         private TextField dateBox;
     private Integer buleano = 0;
-        @FXML
-        private Button addNewButton;
+
         @FXML
         private ToggleButton deptvTogle;
         @FXML
         private Button cancelButton;
-        @FXML
-        private Button resetButton;
+
 
         private int id;
     @FXML
@@ -47,6 +44,7 @@ public class ModDetController {
 
             earningsBox.setText(Float.toString(texto.getEarnings()));
             if (texto.getAvalible()!=0){
+                deptvTogle.setText("Si");
                 deptvTogle.setSelected(true);
             }
 

@@ -123,6 +123,11 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin>
             </VBox>
+            <Button fx:id="reload" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#cargarDatosTabla" prefHeight="26.0" prefWidth="28.0" text="🔄" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </Button>
          </children>
          <GridPane.margin>
             <Insets right="20.0" />
@@ -133,7 +138,7 @@
           <TableColumn fx:id="brandNumberC" prefWidth="51.0" text="Nº" />
           <TableColumn fx:id="brandNameC" prefWidth="99.0" text="Nombre" />
             <TableColumn fx:id="earningsC" prefWidth="75.0" text="Beneficios" />
-            <TableColumn fx:id="fundationC" prefWidth="75.0" text="Fundacion" />
+            <TableColumn fx:id="fundationC" prefWidth="75.0" text="Fundación" />
             <TableColumn fx:id="headquartersC" prefWidth="79.199951171875" text="Oficinas" />
             <TableColumn fx:id="webC" prefWidth="87.199951171875" text="Web" />
             <TableColumn fx:id="isSportyC" minWidth="0.0" prefWidth="79.2000732421875" text="Deportiva" />
@@ -149,8 +154,8 @@
       <HBox fx:id="buttonPanel" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <children>
             <Button fx:id="addButton" mnemonicParsing="false" onAction="#add" prefHeight="18.0" prefWidth="52.0" stylesheets="@estilos/estilos.css" text="➕" />
-            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteRow" prefHeight="25.0" prefWidth="37.0" stylesheets="@estilos/estilos.css" text="-" />
-            <Button fx:id="editButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#openEdit" stylesheets="@estilos/estilos.css" text="Edit" />
+            <Button fx:id="deleteButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#deleteRow" prefHeight="26.0" prefWidth="46.0" stylesheets="@estilos/estilos.css" text="➖" />
+            <Button fx:id="editButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openEdit" prefHeight="26.0" prefWidth="45.0" stylesheets="@estilos/estilos.css" text="Edit" />
          </children>
          <padding>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

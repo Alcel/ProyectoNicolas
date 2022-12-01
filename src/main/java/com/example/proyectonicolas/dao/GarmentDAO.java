@@ -3,6 +3,7 @@ package com.example.proyectonicolas.dao;
 import com.example.proyectonicolas.modelo.Garment;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
 import java.sql.*;
 
@@ -75,7 +76,12 @@ public class GarmentDAO {
             pst.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Información");
+            alert.setHeaderText("No puede incluir caracteres especiales");
+            alert.setContentText("Como por ejemplo: '´`ç");
+            alert.showAndWait().ifPresent(rs -> {
+            });
         }
     }
     public void delete(int num){

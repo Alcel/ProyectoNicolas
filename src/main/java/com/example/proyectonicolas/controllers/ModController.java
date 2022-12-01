@@ -40,6 +40,7 @@ public class ModController {
 
 
         public void initialize(Brand texto){
+            nameBox.requestFocus();
 
             System.out.println(texto);
             id = texto.getBrandNumber();
@@ -52,6 +53,7 @@ public class ModController {
 
             earningsBox.setText(Float.toString(texto.getEarnings()));
             if (texto.getIsSporty()!=0){
+                deptvTogle.setText("Si");
                 deptvTogle.setSelected(true);
             }
 

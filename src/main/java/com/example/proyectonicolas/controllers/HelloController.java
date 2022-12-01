@@ -10,18 +10,13 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import javafx.stage.Modality;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
-
 import java.sql.Date;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -192,7 +187,7 @@ public class HelloController {
 
             Stage stage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("add-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 720, 413);
+            Scene scene = new Scene(fxmlLoader.load(), 600, 413);
             stage.setScene(scene);
             stage.setTitle("IWear - Añadir");
             stage.initModality(Modality.WINDOW_MODAL);
@@ -218,7 +213,7 @@ public class HelloController {
         try {
             Stage stage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mod-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 720, 413);
+            Scene scene = new Scene(fxmlLoader.load(), 600, 413);
             ModController modcont = (ModController) fxmlLoader.getController();
             modcont.initialize((Brand) tvBrands.getSelectionModel().getSelectedItem());
 
@@ -265,9 +260,6 @@ public class HelloController {
             });
 
         }
-
-
-
     }
 
     private void cargarGestorDobleCLick() {

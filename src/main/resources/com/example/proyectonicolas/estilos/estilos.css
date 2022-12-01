@@ -1,6 +1,5 @@
 #gridFiltros,#buttonPanel{
     -fx-background-color: #4a59ff;
-
 }
 
 #gridRoot{
@@ -34,5 +33,9 @@
     -fx-background-radius: 30 30 30 30;
     -fx-scale-x: 1.2px;
     -fx-scale-y: 1.2px;
+}
+
+#buttonPanel{
+    -fx-background-radius: 30 30 0 0;
 }
 
