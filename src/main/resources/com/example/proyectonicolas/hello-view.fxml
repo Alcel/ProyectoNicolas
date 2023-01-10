@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="gridRoot" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@estilos/estilos.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectonicolas.controllers.HelloController">
+<GridPane fx:id="gridRoot" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@estilos/estilos.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectonicolas.controllers.HelloController">
    <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" maxWidth="288.0000244140625" minWidth="10.0" percentWidth="30.0" prefWidth="250.0" />
       <ColumnConstraints hgrow="ALWAYS" maxWidth="296.7999633789062" minWidth="58.39996337890628" percentWidth="17.5" prefWidth="76.79999694824221" />
@@ -153,7 +153,7 @@
       </TableView>
       <HBox fx:id="buttonPanel" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <children>
-            <Button fx:id="addButton" mnemonicParsing="false" onAction="#add" prefHeight="18.0" prefWidth="52.0" stylesheets="@estilos/estilos.css" text="➕" />
+            <Button id="botonMas" fx:id="addButton" mnemonicParsing="false" onAction="#add" prefHeight="18.0" prefWidth="52.0" stylesheets="@estilos/estilos.css" text="➕" />
             <Button fx:id="deleteButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#deleteRow" prefHeight="26.0" prefWidth="46.0" stylesheets="@estilos/estilos.css" text="➖" />
             <Button fx:id="editButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openEdit" prefHeight="26.0" prefWidth="45.0" stylesheets="@estilos/estilos.css" text="Edit" />
          </children>
