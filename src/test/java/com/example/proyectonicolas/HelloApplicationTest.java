@@ -3,19 +3,13 @@ package com.example.proyectonicolas;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.testfx.api.FxAssert;
 import org.testfx.api.FxRobot;
-
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
-import org.testfx.matcher.control.LabeledMatchers;
-import org.testfx.matcher.control.TextInputControlMatchers;
 
 import java.io.IOException;
 
@@ -42,7 +36,22 @@ class HelloApplicationTest {
     @Test
     void validarEscribirValorCampo(FxRobot robot){
         robot.clickOn("#botonMas"); //Pincha en la caja de texto
+        robot.clickOn("#cajaNombre");
+        robot.write("Nombre");
+        robot.clickOn("#cajaAnno");
+        robot.write("2000-12-12");
+        robot.clickOn("#cajaBeneficios");
+        robot.write("18.5");
+        robot.clickOn("#cajaWeb");
+        robot.write("No tiene web");
+        robot.clickOn("#cajaSede");
+        robot.write("Berchules");
+        robot.clickOn("#cajaIsin");
+        robot.write("18215445");
+        robot.clickOn("#botonBool");
+
+
 
 
     }
-    }
+   }

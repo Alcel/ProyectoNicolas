@@ -6,18 +6,18 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectonicolas.controllers.AddController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectonicolas.controllers.AddController">
    <children>
-      <TextField fx:id="webBox" focusTraversable="false" layoutX="79.0" layoutY="200.0" prefHeight="26.0" prefWidth="415.0" promptText="Web" />
-      <TextField fx:id="headquartersBox" focusTraversable="false" layoutX="307.0" layoutY="55.0" prefHeight="26.0" prefWidth="186.0" promptText="Sede" />
-      <TextField fx:id="earningsBox" focusTraversable="false" layoutX="79.0" layoutY="152.0" prefHeight="26.0" prefWidth="185.0" promptText="Beneficios (en miles de millones)" />
-      <TextField fx:id="nameBox" focusTraversable="false" layoutX="79.0" layoutY="55.0" prefHeight="26.0" prefWidth="186.0" promptText="Nombre" />
-      <TextField fx:id="dateBox" focusTraversable="false" layoutX="79.0" layoutY="104.0" prefHeight="26.0" prefWidth="186.0" promptText="Fundación AAAA-MM-DD" />
-      <TextField fx:id="isinBox" focusTraversable="false" layoutX="307.0" layoutY="117.0" prefHeight="26.0" prefWidth="186.0" promptText="Código ISIN" />
+      <TextField id="cajaWeb" fx:id="webBox" focusTraversable="false" layoutX="79.0" layoutY="200.0" prefHeight="26.0" prefWidth="415.0" promptText="Web" />
+      <TextField id="cajaSede" fx:id="headquartersBox" focusTraversable="false" layoutX="307.0" layoutY="55.0" prefHeight="26.0" prefWidth="186.0" promptText="Sede" />
+      <TextField id="cajaBeneficios" fx:id="earningsBox" focusTraversable="false" layoutX="79.0" layoutY="152.0" prefHeight="26.0" prefWidth="185.0" promptText="Beneficios (en miles de millones)" />
+      <TextField id="cajaNombre" fx:id="nameBox" focusTraversable="false" layoutX="79.0" layoutY="55.0" prefHeight="26.0" prefWidth="186.0" promptText="Nombre" />
+      <TextField id="cajaAnno" fx:id="dateBox" focusTraversable="false" layoutX="79.0" layoutY="104.0" prefHeight="26.0" prefWidth="186.0" promptText="Fundación AAAA-MM-DD" />
+      <TextField id="cajaIsin" fx:id="isinBox" focusTraversable="false" layoutX="307.0" layoutY="117.0" prefHeight="26.0" prefWidth="186.0" promptText="Código ISIN" />
       <Button fx:id="resetButton" layoutX="248.0" layoutY="328.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
       <Button fx:id="cancelButton" layoutX="146.0" layoutY="328.0" mnemonicParsing="false" onAction="#closeWindow" text="Cancelar" />
-      <Button fx:id="addNewButton" layoutX="364.0" layoutY="328.0" mnemonicParsing="false" onAction="#addNew" text="Insertar" />
-      <ToggleButton fx:id="deptvTogle" layoutX="386.0" layoutY="151.0" mnemonicParsing="false" onAction="#cambioDep" prefHeight="26.0" prefWidth="56.0" text="No" />
+      <Button id="botonInsert" fx:id="addNewButton" layoutX="364.0" layoutY="328.0" mnemonicParsing="false" onAction="#addNew" text="Insertar" />
+      <ToggleButton id="botonBool" fx:id="deptvTogle" layoutX="386.0" layoutY="151.0" mnemonicParsing="false" onAction="#cambioDep" prefHeight="26.0" prefWidth="56.0" text="No" />
       <Label layoutX="308.0" layoutY="156.0" text="¿Deportiva?" />
    </children>
 </AnchorPane>
