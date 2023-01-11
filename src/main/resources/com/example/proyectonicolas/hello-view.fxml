@@ -133,7 +133,7 @@
             <Insets right="20.0" />
          </GridPane.margin>
       </GridPane>
-      <TableView fx:id="tvBrands" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="277.0" prefWidth="577.0" GridPane.columnIndex="1" GridPane.columnSpan="4">
+      <TableView id="tablaId" fx:id="tvBrands" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="277.0" prefWidth="577.0" GridPane.columnIndex="1" GridPane.columnSpan="4">
         <columns>
           <TableColumn fx:id="brandNumberC" prefWidth="51.0" text="Nº" />
           <TableColumn fx:id="brandNameC" prefWidth="99.0" text="Nombre" />

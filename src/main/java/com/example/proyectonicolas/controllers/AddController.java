@@ -32,7 +32,7 @@ public class AddController {
     @FXML
     private Button resetButton;
 
-    private HelloController hc;
+    private HelloController hc = new HelloController();
 
     @FXML
     public void addNew(ActionEvent actionEvent) {

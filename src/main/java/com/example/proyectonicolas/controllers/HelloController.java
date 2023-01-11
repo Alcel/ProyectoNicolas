@@ -69,7 +69,12 @@ public class HelloController {
     @FXML
     private Button deleteButton;
 
-    private Executor exec;
+    private Executor exec = new Executor() {
+        @Override
+        public void execute(Runnable command) {
+
+        }
+    };
 
     public void initialize() {
         brandNumberC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("brandNumber"));

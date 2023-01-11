@@ -6,10 +6,13 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.testfx.api.FxAssert;
 import org.testfx.api.FxRobot;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
+import org.testfx.matcher.control.ListViewMatchers;
+import org.testfx.matcher.control.TextInputControlMatchers;
 
 import java.io.IOException;
 
@@ -34,7 +37,7 @@ class HelloApplicationTest {
         stage.setY((screenBounds.getHeight() - stage.getHeight()) / 4);
     }
     @Test
-    void validarEscribirValorCampo(FxRobot robot){
+    void escribirValorCampo(FxRobot robot){
         robot.clickOn("#botonMas"); //Pincha en la caja de texto
         robot.clickOn("#cajaNombre");
         robot.write("Nombre");
@@ -49,9 +52,8 @@ class HelloApplicationTest {
         robot.clickOn("#cajaIsin");
         robot.write("18215445");
         robot.clickOn("#botonBool");
-
-
-
+        robot.clickOn("#botonInsert");
+        //Arreglar FxAssert.verifyThat("#tabalId", ListViewMatchers.hasItems(1));
 
     }
-   }
+}
