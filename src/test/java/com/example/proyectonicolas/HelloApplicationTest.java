@@ -12,9 +12,12 @@ import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 import org.testfx.matcher.control.ListViewMatchers;
+import org.testfx.matcher.control.TableViewMatchers;
 import org.testfx.matcher.control.TextInputControlMatchers;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 @ExtendWith(ApplicationExtension.class)
 class HelloApplicationTest {
@@ -38,6 +41,7 @@ class HelloApplicationTest {
     }
     @Test
     void escribirValorCampo(FxRobot robot){
+        Date fecha = new Date(2000,12,12);
         robot.clickOn("#botonMas"); //Pincha en la caja de texto
         robot.clickOn("#cajaNombre");
         robot.write("Nombre");
@@ -53,7 +57,8 @@ class HelloApplicationTest {
         robot.write("18215445");
         robot.clickOn("#botonBool");
         robot.clickOn("#botonInsert");
-        //Arreglar FxAssert.verifyThat("#tabalId", ListViewMatchers.hasItems(1));
 
+        //FxAssert.verifyThat("#tablaId", TableViewMatchers.hasNumRows(1));
+        FxAssert.verifyThat("#tablaId", TableViewMatchers.hasNumRows(1));
     }
 }
