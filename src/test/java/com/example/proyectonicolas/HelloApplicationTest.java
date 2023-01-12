@@ -59,7 +59,7 @@ class HelloApplicationTest {
         robot.clickOn("#botonInsert");
 
         //FxAssert.verifyThat("#tablaId", TableViewMatchers.hasNumRows(1));
-        FxAssert.verifyThat("#tablaId", TableViewMatchers.hasNumRows(1));
+        FxAssert.verifyThat("#tablaId", TableViewMatchers.containsRow(26,"Nombre",18.5f,"2000-12-12","Berchules","No tiene web",1,"18215445"));
 
 
         //Comprobar sin nombre
