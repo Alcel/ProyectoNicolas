@@ -11,6 +11,7 @@ import org.testfx.api.FxRobot;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
+import org.testfx.matcher.base.WindowMatchers;
 import org.testfx.matcher.control.ListViewMatchers;
 import org.testfx.matcher.control.TableViewMatchers;
 import org.testfx.matcher.control.TextInputControlMatchers;
@@ -41,7 +42,6 @@ class HelloApplicationTest {
     }
     @Test
     void escribirValorCampo(FxRobot robot){
-        Date fecha = new Date(2000,12,12);
         robot.clickOn("#botonMas"); //Pincha en la caja de texto
         robot.clickOn("#cajaNombre");
         robot.write("Nombre");
@@ -60,5 +60,22 @@ class HelloApplicationTest {
 
         //FxAssert.verifyThat("#tablaId", TableViewMatchers.hasNumRows(1));
         FxAssert.verifyThat("#tablaId", TableViewMatchers.hasNumRows(1));
+
+
+        //Comprobar sin nombre
+        robot.clickOn("#botonMas"); //Pincha en la caja de texto
+        robot.clickOn("#cajaAnno");
+        robot.write("2000-12-12");
+        robot.clickOn("#cajaBeneficios");
+        robot.write("18.5");
+        robot.clickOn("#cajaWeb");
+        robot.write("No tiene web");
+        robot.clickOn("#cajaSede");
+        robot.write("Berchules");
+        robot.clickOn("#cajaIsin");
+        robot.write("18215445");
+        robot.clickOn("#botonBool");
+        robot.clickOn("#botonInsert");
+        FxAssert.verifyThat(robot.window("Información"), WindowMatchers.isShowing());
     }
 }
