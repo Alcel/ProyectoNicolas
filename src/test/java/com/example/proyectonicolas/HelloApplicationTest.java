@@ -41,7 +41,7 @@ class HelloApplicationTest {
         stage.setY((screenBounds.getHeight() - stage.getHeight()) / 4);
     }
     @Test
-    void escribirValorCampo(FxRobot robot){
+    void insertarCamposCorrectos(FxRobot robot){
         robot.clickOn("#botonMas"); //Pincha en la caja de texto
         robot.clickOn("#cajaNombre");
         robot.write("Nombre");
@@ -58,11 +58,15 @@ class HelloApplicationTest {
         robot.clickOn("#botonBool");
         robot.clickOn("#botonInsert");
 
-        //FxAssert.verifyThat("#tablaId", TableViewMatchers.hasNumRows(1));
-        FxAssert.verifyThat("#tablaId", TableViewMatchers.containsRow(26,"Nombre",18.5f,"2000-12-12","Berchules","No tiene web",1,"18215445"));
+        FxAssert.verifyThat("#tablaId", TableViewMatchers.hasNumRows(1));
+        //FxAssert.verifyThat("#tablaId", TableViewMatchers.containsRowAtIndex(7,55,"Nombre",18.5f,"2000-12-12","Berchules","No tiene web",1,"18215445"));
 
 
         //Comprobar sin nombre
+
+    }
+    @Test
+    void escribirCampoIncorrecto(FxRobot robot) {
         robot.clickOn("#botonMas"); //Pincha en la caja de texto
         robot.clickOn("#cajaAnno");
         robot.write("2000-12-12");

@@ -51,12 +51,22 @@ class BrandDAOTest {
 
             // Debemos cargar los datos en el ObservableList (Que es un ArrayList especial)
             // Los datos que devuelve la consulta no son directamente cargables en nuestro objeto
-
-
             conexionBBDD.close();
             resultadoConsulta.next();
             rsS=resultadoConsulta.getString(2);
             assertEquals(rsS,"Homero");
+            rsS=resultadoConsulta.getString(3);
+            assertEquals(rsS,"180.25");
+            rsS=resultadoConsulta.getString(4);
+            assertEquals(rsS,"2050-02-12");
+            rsS=resultadoConsulta.getString(5);
+            assertEquals(rsS,"Malaga");
+            rsS=resultadoConsulta.getString(6);
+            assertEquals(rsS,"No tiene");
+            rsS=resultadoConsulta.getString(7);
+            assertEquals(rsS,"0");
+            rsS=resultadoConsulta.getString(8);
+            assertEquals(rsS,"345");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error:" + e.toString());
@@ -65,10 +75,8 @@ class BrandDAOTest {
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
-
         }
     }
-
 
     @Test
     void update() {
