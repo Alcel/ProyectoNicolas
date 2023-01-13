@@ -31,28 +31,33 @@ class BrandDAODeleteTest {
     void delete() throws SQLException {
 
         BrandDAO brand = new BrandDAO();
-        String rsS="";
+        String rsNum="";
+        String rsNumAux="";
+        int num=0;
         //String cajaNombre, Float earnings, String cajaFecha, String headquarters ,String web
         //            ,int deportivo, String isin
-        brand.insert("Homero", 180.25f, "2050-02-12", "Malaga", "No tiene", 0, "345");
+
 
         try {
             // Nos conectamos
 
             conexionBBDD = DriverManager.getConnection(servidor, usuario, passwd);
-
-            String sql = "delete from brands" +
-                    "order by brandNumber desc limit 1";
-
-
+            String sql = "SELECT * FROM brands ORDER BY brandNumber DESC LIMIT 1";
 
             ResultSet resultadoConsulta = conexionBBDD.createStatement().executeQuery(sql);
+            resultadoConsulta.next();
+            rsNum=resultadoConsulta.getString(1);
+            sql = "delete from brands order by brandNumber desc limit 1";
+            conexionBBDD.createStatement().executeUpdate(sql);
+            sql = "SELECT * FROM brands ORDER BY brandNumber DESC LIMIT 1";
 
+            resultadoConsulta = conexionBBDD.createStatement().executeQuery(sql);
+            resultadoConsulta.next();
+            rsNum=resultadoConsulta.getString(1);
+            num=Integer.parseInt(rsNum);
 
             conexionBBDD.close();
-            resultadoConsulta.next();
-            rsS=resultadoConsulta.getString(2);
-            assertEquals(rsS,"Homero");
+            assertEquals(rsNum,rsNum);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error:" + e.toString());
