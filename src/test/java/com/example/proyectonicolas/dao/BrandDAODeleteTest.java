@@ -1,6 +1,5 @@
 package com.example.proyectonicolas.dao;
 
-import com.example.proyectonicolas.modelo.Brand;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
@@ -8,9 +7,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class BrandDAOTest {
+class BrandDAODeleteTest {
     private final String servidor = "jdbc:mariadb://localhost:5555/noinch?useSSL=false";
     private final String usuario = "adminer";
     private final String passwd = "adminer";
@@ -29,7 +28,7 @@ class BrandDAOTest {
     }
 
     @Test
-    void insert() throws SQLException {
+    void delete() throws SQLException {
 
         BrandDAO brand = new BrandDAO();
         String rsS="";
@@ -42,31 +41,18 @@ class BrandDAOTest {
 
             conexionBBDD = DriverManager.getConnection(servidor, usuario, passwd);
 
-            String SQL = "SELECT * "
-                    + "FROM brands " + "WHERE brandName='Homero' and isin='345'"
-                    + "ORDER By brandNumber";
+            String sql = "delete from brands" +
+                    "order by brandNumber desc limit 1";
 
 
-            ResultSet resultadoConsulta = conexionBBDD.createStatement().executeQuery(SQL);
 
-            // Debemos cargar los datos en el ObservableList (Que es un ArrayList especial)
-            // Los datos que devuelve la consulta no son directamente cargables en nuestro objeto
+            ResultSet resultadoConsulta = conexionBBDD.createStatement().executeQuery(sql);
+
+
             conexionBBDD.close();
             resultadoConsulta.next();
             rsS=resultadoConsulta.getString(2);
             assertEquals(rsS,"Homero");
-            rsS=resultadoConsulta.getString(3);
-            assertEquals(rsS,"180.25");
-            rsS=resultadoConsulta.getString(4);
-            assertEquals(rsS,"2050-02-12");
-            rsS=resultadoConsulta.getString(5);
-            assertEquals(rsS,"Malaga");
-            rsS=resultadoConsulta.getString(6);
-            assertEquals(rsS,"No tiene");
-            rsS=resultadoConsulta.getString(7);
-            assertEquals(rsS,"0");
-            rsS=resultadoConsulta.getString(8);
-            assertEquals(rsS,"345");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error:" + e.toString());
@@ -76,13 +62,5 @@ class BrandDAOTest {
                 throw new RuntimeException(ex);
             }
         }
-    }
-
-    @Test
-    void update() {
-    }
-
-    @Test
-    void delete() {
     }
 }
