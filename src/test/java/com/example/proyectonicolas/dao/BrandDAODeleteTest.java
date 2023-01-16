@@ -34,6 +34,7 @@ class BrandDAODeleteTest {
         String rsNum="";
         String rsNumAux="";
         int num=0;
+        int numAux;
         //String cajaNombre, Float earnings, String cajaFecha, String headquarters ,String web
         //            ,int deportivo, String isin
 
@@ -53,11 +54,12 @@ class BrandDAODeleteTest {
 
             resultadoConsulta = conexionBBDD.createStatement().executeQuery(sql);
             resultadoConsulta.next();
-            rsNum=resultadoConsulta.getString(1);
-            num=Integer.parseInt(rsNum);
-
+            rsNumAux=resultadoConsulta.getString(1);
+            num=Integer.parseInt(rsNumAux);
+            numAux= Integer.parseInt(rsNum);
             conexionBBDD.close();
-            assertEquals(rsNum,rsNum);
+
+            assertEquals(numAux,num+1);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error:" + e.toString());
