@@ -1,6 +1,7 @@
 package com.example.proyectonicolas.controllers;
 
 import com.example.proyectonicolas.HelloApplication;
+import com.example.proyectonicolas.ReportBrands;
 import com.example.proyectonicolas.dao.BrandDAO;
 import com.example.proyectonicolas.modelo.Brand;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,10 +15,15 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
+
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -75,6 +81,24 @@ public class HelloController {
 
         }
     };
+    @FXML
+    private GridPane gridRoot;
+    @FXML
+    private GridPane gridFiltros;
+    @FXML
+    private Label idLabel;
+    @FXML
+    private Label dateLabel;
+    @FXML
+    private Label nameLabel;
+    @FXML
+    private Label questionLabel;
+    @FXML
+    private Button reload;
+    @FXML
+    private HBox buttonPanel;
+    @FXML
+    private Button informe;
 
     public void initialize() {
         brandNumberC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("brandNumber"));
@@ -312,5 +336,19 @@ public class HelloController {
         stage.setMinWidth(720);
         stage.setMinHeight(413);
         stage.show();
+    }
+
+    @FXML
+    public void cargarDatosTabla(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    public void informe(ActionEvent actionEvent) {
+        try {
+            // --- Show Jasper Report on click-----
+            new ReportBrands().showReportSimple();
+        } catch (ClassNotFoundException | JRException | SQLException e1) {
+            e1.printStackTrace();
+        }
     }
 }

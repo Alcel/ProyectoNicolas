@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="gridRoot" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@estilos/estilos.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectonicolas.controllers.HelloController">
+<GridPane fx:id="gridRoot" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@estilos/estilos.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectonicolas.controllers.HelloController">
    <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" maxWidth="288.0000244140625" minWidth="10.0" percentWidth="30.0" prefWidth="250.0" />
       <ColumnConstraints hgrow="ALWAYS" maxWidth="296.7999633789062" minWidth="58.39996337890628" percentWidth="17.5" prefWidth="76.79999694824221" />
@@ -161,5 +161,6 @@
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </padding>
       </HBox>
+      <Button fx:id="informe" mnemonicParsing="false" onAction="#informe" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
    </children>
 </GridPane>

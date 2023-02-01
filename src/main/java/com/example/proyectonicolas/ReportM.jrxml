@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportM" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0c751ea0-df43-458a-811e-657dd4743934">
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[bm9pbmNoLmJyYW5kcyBBUyAsMTE3LDY1LDI4ODQ3MzcwLTQzZjAtNDg3NS1iMzlhLTBhNTQ1ODEw
+OWVjZjs=]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="269"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="723"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter1.xml"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT `brandNumber`,
+	`brandName`,
+	earnings,
+	fundation,
+	headquarters,
+	web,
+	`isSporty`,
+	isin
+FROM noinch.brands]]>
+	</queryString>
+	<field name="brandNumber" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="brandNumber"/>
+		<property name="com.jaspersoft.studio.field.label" value="brandNumber"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="brands"/>
+	</field>
+	<field name="brandName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="brandName"/>
+		<property name="com.jaspersoft.studio.field.label" value="brandName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="brands"/>
+	</field>
+	<field name="earnings" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.name" value="earnings"/>
+		<property name="com.jaspersoft.studio.field.label" value="earnings"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="brands"/>
+	</field>
+	<field name="fundation" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fundation"/>
+		<property name="com.jaspersoft.studio.field.label" value="fundation"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="brands"/>
+	</field>
+	<field name="headquarters" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="headquarters"/>
+		<property name="com.jaspersoft.studio.field.label" value="headquarters"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="brands"/>
+	</field>
+	<field name="web" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="web"/>
+		<property name="com.jaspersoft.studio.field.label" value="web"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="brands"/>
+	</field>
+	<field name="isSporty" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="isSporty"/>
+		<property name="com.jaspersoft.studio.field.label" value="isSporty"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="brands"/>
+	</field>
+	<field name="isin" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="isin"/>
+		<property name="com.jaspersoft.studio.field.label" value="isin"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="brands"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="197" y="20" width="160" height="30" uuid="1cd6ab1e-4ac9-469c-a431-4094117652b0"/>
+				<textElement markup="none">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Marcas de ropa]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="25273c14-9150-4819-a70d-67838d0e3da2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7f4646de-4f41-4760-bc10-9d627ea53c84"/>
+				</reportElement>
+				<text><![CDATA[Nombre de la marca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="0" width="100" height="30" uuid="af15a471-d75c-4674-bfe6-03e4e31a3862">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4f23617f-46fd-4765-8f75-4e11dd4bfc82"/>
+				</reportElement>
+				<text><![CDATA[Codigo ISIN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="0" width="100" height="30" uuid="7e723cb8-7725-401a-a5b4-62397cd253dc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cd666b0e-cc5d-4141-a945-db964b64d818"/>
+				</reportElement>
+				<text><![CDATA[Oficinas centrales]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="0" width="100" height="30" uuid="32a796aa-52f6-46e0-ba58-861f5c6a6328">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6a3be00d-1972-4a17-a4ec-4f81c516a9db"/>
+				</reportElement>
+				<text><![CDATA[Web]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="20" width="100" height="30" uuid="4f9777c3-95da-4dba-9d4d-5df44e31d8fe">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7f4646de-4f41-4760-bc10-9d627ea53c84"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{brandName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="20" width="100" height="30" uuid="9ecf743c-942f-424f-9e94-6fe118237df0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4f23617f-46fd-4765-8f75-4e11dd4bfc82"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{isin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="20" width="100" height="30" uuid="7c8ce720-6194-4efd-b13d-467d4dc6171f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cd666b0e-cc5d-4141-a945-db964b64d818"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{headquarters}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="20" width="100" height="30" uuid="ac5bee55-9fbb-4c8e-a230-5a87e3c9cbf8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6a3be00d-1972-4a17-a4ec-4f81c516a9db"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{web}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
