@@ -99,6 +99,8 @@ public class HelloController {
     private HBox buttonPanel;
     @FXML
     private Button informe;
+    @FXML
+    private Button informeDetalleButton;
 
     public void initialize() {
         brandNumberC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("brandNumber"));
@@ -347,6 +349,16 @@ public class HelloController {
         try {
             // --- Show Jasper Report on click-----
             new ReportBrands().showReportSimple();
+        } catch (ClassNotFoundException | JRException | SQLException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void informeDetalle(ActionEvent actionEvent) {
+        try {
+            // --- Show Jasper Report on click-----
+            new ReportBrands().showReportConSubreport();
         } catch (ClassNotFoundException | JRException | SQLException e1) {
             e1.printStackTrace();
         }

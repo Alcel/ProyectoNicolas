@@ -161,6 +161,7 @@
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </padding>
       </HBox>
-      <Button fx:id="informe" mnemonicParsing="false" onAction="#informe" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Button fx:id="informe" mnemonicParsing="false" onAction="#informe" text="Inf M" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Button fx:id="informeDetalleButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#informeDetalle" text="Info Det" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
    </children>
 </GridPane>

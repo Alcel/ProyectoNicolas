@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Det" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9250b9b8-6537-4ee7-9550-f32a2430c1e8">
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[bm9pbmNoLmNsb3RoZXMgQVMgLDExMCw0MCwzNGMzYzJlMy0xMDliLTRhYzEtYjkzNy1iNTIzYTIw
+NjJiNDY7]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="291"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="697"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter1.xml"/>
+	<style name="ColoresAlternos">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2==1]]></conditionExpression>
+			<style backcolor="#F09F9C" markup=""/>
+		</conditionalStyle>
+	</style>
+	<parameter name="Parameter1" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT `launchDate`,
+	`clothesName`,
+	`countryManufacture`,
+	earnings,
+	`clothesBrandNumber`
+FROM noinch.clothes]]>
+	</queryString>
+	<field name="launchDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="launchDate"/>
+		<property name="com.jaspersoft.studio.field.label" value="launchDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clothes"/>
+	</field>
+	<field name="clothesName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="clothesName"/>
+		<property name="com.jaspersoft.studio.field.label" value="clothesName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clothes"/>
+	</field>
+	<field name="countryManufacture" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="countryManufacture"/>
+		<property name="com.jaspersoft.studio.field.label" value="countryManufacture"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clothes"/>
+	</field>
+	<field name="earnings" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.name" value="earnings"/>
+		<property name="com.jaspersoft.studio.field.label" value="earnings"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clothes"/>
+	</field>
+	<field name="clothesBrandNumber" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="clothesBrandNumber"/>
+		<property name="com.jaspersoft.studio.field.label" value="clothesBrandNumber"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clothes"/>
+	</field>
+	<variable name="Variable_Suma" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{earnings}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="41" splitType="Stretch">
+			<frame>
+				<reportElement style="ColoresAlternos" mode="Opaque" x="23" y="11" width="508" height="30" forecolor="#050003" backcolor="#FF9C75" uuid="66ccb178-5edb-4d7d-8b5d-445e21ba28ba"/>
+				<staticText>
+					<reportElement x="340" y="-1" width="130" height="30" uuid="9d3f2b61-8de0-4bd0-b33d-6858df633365">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4c827ed9-20a0-45a1-a994-7fbac1e1de4e"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Beneficios (en millones)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="176" y="-1" width="134" height="30" uuid="b028416b-ae69-4e9d-837e-8faef9d08909">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="be8c896d-0a23-4b3f-a476-3d2b51384f6f"/>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Pais de manufacturación]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="16" y="0" width="114" height="30" uuid="16169b28-7152-41a2-8dce-b7bf51f0184b">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7e4b997d-5260-44f3-b1e2-90cad4bd47f6"/>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nombre de prenda]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="37" splitType="Stretch">
+			<frame>
+				<reportElement style="ColoresAlternos" mode="Opaque" x="23" y="0" width="508" height="30" forecolor="#050003" uuid="22fa46e9-658e-48e0-a2dc-6aa81d3088ca"/>
+				<textField>
+					<reportElement x="17" y="0" width="100" height="30" uuid="783e85a8-1366-4f80-acd6-ba73984ed51b">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7e4b997d-5260-44f3-b1e2-90cad4bd47f6"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{clothesName}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="177" y="0" width="100" height="30" uuid="e292dde2-3068-498a-9604-8d92cfb216ef">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="be8c896d-0a23-4b3f-a476-3d2b51384f6f"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{countryManufacture}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="360" y="0" width="100" height="30" uuid="e039a953-34b3-45a9-a595-718512e534fe">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4c827ed9-20a0-45a1-a994-7fbac1e1de4e"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{earnings}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<summary>
+		<band height="67">
+			<textField>
+				<reportElement x="383" y="18" width="100" height="30" uuid="8695e340-a602-4da7-89a2-efa1bc20f334"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{Variable_Suma}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="290" y="20" width="90" height="30" uuid="bb9c91af-926d-46ee-9888-fcb265872d5c"/>
+				<text><![CDATA[Beneficios totales:
+(en millones)]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

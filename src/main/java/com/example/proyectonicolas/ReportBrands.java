@@ -66,8 +66,8 @@ public class ReportBrands extends JFrame {
         conexionBBDD = DriverManager.getConnection(servidor, usuario, passwd);
 
         //  Block of code to try
-        String reportSrcFile = "src/main/java/com/example/javafxjasperreport/MaestroClientes.jrxml";
-        String subReportSrcFile = "src/main/java/com/example/javafxjasperreport/SubreportPedidos.jrxml";
+        String reportSrcFile = "src/main/java/com/example/proyectonicolas/MH.jrxml";
+        String subReportSrcFile = "src/main/java/com/example/proyectonicolas/Det.jrxml";
 
         // First, compile jrxml file.
         JasperReport jasperReport = JasperCompileManager.compileReport(reportSrcFile);
@@ -76,10 +76,11 @@ public class ReportBrands extends JFrame {
 
         // Debemos pasar el subreport como un parámetro para que se muestre correctamente el informe
         // El parámetro debe estar definido como del tipo net.sf.jasperreports.engine.JasperReport
+        String p="Parameter1";
 
         HashMap<String, Object> parameters = new HashMap<String, Object>();
-
-        parameters.put("Subreport", jasperSubReport);
+        parameters.put(p, 1);
+        parameters.put("Subreport", jasperSubReport);//Resource not found at: Det.jasper
 
         JasperPrint print = JasperFillManager.fillReport(jasperReport, parameters, conexionBBDD);
         JRViewer viewer = new JRViewer(print);
@@ -89,8 +90,5 @@ public class ReportBrands extends JFrame {
         this.setSize(700, 500);
         this.setVisible(true);
         System.out.print("Done!");
-
     }
-
-
 }

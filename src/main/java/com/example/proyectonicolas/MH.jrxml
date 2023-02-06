@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MH" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a5bd2e80-77fe-4a44-8b93-ee22f3ae6e1b">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter1.xml"/>
+	<parameter name="Parameter1" class="java.lang.String"/>
+	<parameter name="Subreport" class="net.sf.jasperreports.engine.JasperReport"></parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT `brandNumber`,
+	`brandName`,
+	fundation,
+	headquarters,
+	isin
+FROM noinch.brands
+where `brandNumber`=$P{Parameter1}]]>
+	</queryString>
+	<field name="brandNumber" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="brandNumber"/>
+		<property name="com.jaspersoft.studio.field.label" value="brandNumber"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="brands"/>
+	</field>
+	<field name="brandName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="brandName"/>
+		<property name="com.jaspersoft.studio.field.label" value="brandName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="brands"/>
+	</field>
+	<field name="fundation" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fundation"/>
+		<property name="com.jaspersoft.studio.field.label" value="fundation"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="brands"/>
+	</field>
+	<field name="headquarters" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="headquarters"/>
+		<property name="com.jaspersoft.studio.field.label" value="headquarters"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="brands"/>
+	</field>
+	<field name="isin" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="isin"/>
+		<property name="com.jaspersoft.studio.field.label" value="isin"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="brands"/>
+	</field>
+	<variable name="CuentaMil" class="java.lang.Float" calculation="Sum"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="83" splitType="Stretch">
+			<staticText>
+				<reportElement x="180" y="20" width="270" height="30" uuid="068c19b7-f314-41c9-9cc3-1efa8872bce0"/>
+				<textElement>
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Marca y sus prendas]]></text>
+			</staticText>
+			<image>
+				<reportElement x="110" y="16" width="50" height="50" uuid="a6689f53-72f7-44c1-8196-964548ce8387"/>
+				<imageExpression><![CDATA["C:/Users/Nico/Downloads/hym.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="30" y="0" width="80" height="30" uuid="ce6dfae2-dd57-4b4f-84eb-6d7cc3745506">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5a494df0-9e6f-4cc3-9d42-5473072e68ab"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre de la 
+marca:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="0" width="70" height="30" uuid="6020ffd5-144d-4481-8fdf-7f013f0bb698">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6436a4b9-31e0-4654-9730-61d75f933e6e"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de fundacion:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="60" height="30" uuid="9fcce127-f5d3-4621-a4aa-bb8b3db96863">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="32651ec7-e846-4b2b-a745-0482db1e4602"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Codigo Isin:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="110" y="0" width="100" height="30" uuid="24aa568d-fa10-49d4-b7ce-42bb2345990a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5a494df0-9e6f-4cc3-9d42-5473072e68ab"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{brandName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="0" width="90" height="30" uuid="3bfc905a-f1b4-479f-8314-bef34675a96a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="32651ec7-e846-4b2b-a745-0482db1e4602"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{isin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="0" width="95" height="30" uuid="d00844ed-0406-4f9a-93c4-3c15234d92d4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6436a4b9-31e0-4654-9730-61d75f933e6e"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd-MM-yyyy").format($F{fundation})]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="205" splitType="Stretch">
+			<subreport>
+				<reportElement x="-20" y="0" width="555" height="200" uuid="f736202c-2180-4674-8ce5-a1045f1c1426"/>
+				<subreportParameter name="Parameter1">
+					<subreportParameterExpression><![CDATA[]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{Subreport}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50"/>
+	</pageFooter>
+</jasperReport>
