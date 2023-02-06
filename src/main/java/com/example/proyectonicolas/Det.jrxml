@@ -57,7 +57,7 @@ FROM noinch.clothes]]>
 	<columnHeader>
 		<band height="41" splitType="Stretch">
 			<frame>
-				<reportElement style="ColoresAlternos" mode="Opaque" x="23" y="11" width="508" height="30" forecolor="#050003" backcolor="#FF9C75" uuid="66ccb178-5edb-4d7d-8b5d-445e21ba28ba"/>
+				<reportElement style="ColoresAlternos" mode="Opaque" x="23" y="11" width="508" height="30" forecolor="#050003" backcolor="#FFDCCC" uuid="66ccb178-5edb-4d7d-8b5d-445e21ba28ba"/>
 				<staticText>
 					<reportElement x="340" y="-1" width="130" height="30" uuid="9d3f2b61-8de0-4bd0-b33d-6858df633365">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4c827ed9-20a0-45a1-a994-7fbac1e1de4e"/>
@@ -93,14 +93,14 @@ FROM noinch.clothes]]>
 			<frame>
 				<reportElement style="ColoresAlternos" mode="Opaque" x="23" y="0" width="508" height="30" forecolor="#050003" uuid="22fa46e9-658e-48e0-a2dc-6aa81d3088ca"/>
 				<textField>
-					<reportElement x="17" y="0" width="100" height="30" uuid="783e85a8-1366-4f80-acd6-ba73984ed51b">
+					<reportElement x="17" y="0" width="113" height="30" uuid="783e85a8-1366-4f80-acd6-ba73984ed51b">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7e4b997d-5260-44f3-b1e2-90cad4bd47f6"/>
 					</reportElement>
 					<textElement verticalAlignment="Middle"/>
 					<textFieldExpression><![CDATA[$F{clothesName}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="177" y="0" width="100" height="30" uuid="e292dde2-3068-498a-9604-8d92cfb216ef">
+					<reportElement x="177" y="0" width="133" height="30" uuid="e292dde2-3068-498a-9604-8d92cfb216ef">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="be8c896d-0a23-4b3f-a476-3d2b51384f6f"/>
 					</reportElement>
 					<textElement verticalAlignment="Middle"/>
@@ -111,7 +111,7 @@ FROM noinch.clothes]]>
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4c827ed9-20a0-45a1-a994-7fbac1e1de4e"/>
 					</reportElement>
 					<textElement textAlignment="Right" verticalAlignment="Middle"/>
-					<textFieldExpression><![CDATA[$F{earnings}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.format("%.2f", (double)$F{earnings})]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
@@ -119,12 +119,12 @@ FROM noinch.clothes]]>
 	<summary>
 		<band height="67">
 			<textField>
-				<reportElement x="383" y="18" width="100" height="30" uuid="8695e340-a602-4da7-89a2-efa1bc20f334"/>
+				<reportElement x="410" y="18" width="73" height="30" uuid="8695e340-a602-4da7-89a2-efa1bc20f334"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[$V{Variable_Suma}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[String.format("%.2f",(double)$V{Variable_Suma})]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="290" y="20" width="90" height="30" uuid="bb9c91af-926d-46ee-9888-fcb265872d5c"/>
+				<reportElement x="320" y="18" width="90" height="30" uuid="bb9c91af-926d-46ee-9888-fcb265872d5c"/>
 				<text><![CDATA[Beneficios totales:
 (en millones)]]></text>
 			</staticText>

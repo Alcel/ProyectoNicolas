@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportM" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0c751ea0-df43-458a-811e-657dd4743934">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportM" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0c751ea0-df43-458a-811e-657dd4743934">
 	<property name="com.jaspersoft.studio.data.sql.tables">
 		<![CDATA[bm9pbmNoLmJyYW5kcyBBUyAsMTE3LDY1LDI4ODQ3MzcwLTQzZjAtNDg3NS1iMzlhLTBhNTQ1ODEw
 OWVjZjs=]]>
@@ -8,6 +8,15 @@ OWVjZjs=]]>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="269"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="723"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter1.xml"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<style name="ColorAlterno" mode="Opaque" forecolor="#FCCDCC" backcolor="#FFFFFF">
 		<conditionalStyle>
 			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2==1]]></conditionExpression>
@@ -74,14 +83,14 @@ FROM noinch.brands]]>
 	<title>
 		<band height="83" splitType="Stretch">
 			<staticText>
-				<reportElement x="180" y="10" width="243" height="50" uuid="1cd6ab1e-4ac9-469c-a431-4094117652b0"/>
+				<reportElement x="130" y="10" width="243" height="50" uuid="1cd6ab1e-4ac9-469c-a431-4094117652b0"/>
 				<textElement markup="none">
 					<font size="26" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Marcas de ropa]]></text>
 			</staticText>
 			<image>
-				<reportElement x="100" y="10" width="50" height="50" uuid="9bc430a0-1c57-4087-a5d9-187adf24d73c"/>
+				<reportElement x="50" y="10" width="50" height="50" uuid="9bc430a0-1c57-4087-a5d9-187adf24d73c"/>
 				<imageExpression><![CDATA["C:/Users/Nico/Downloads/hym.png"]]></imageExpression>
 			</image>
 		</band>
@@ -92,40 +101,40 @@ FROM noinch.brands]]>
 	<columnHeader>
 		<band height="35" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="30" y="0" width="480" height="30" forecolor="#F0A173" backcolor="#F5D384" uuid="acc83789-a2cd-4594-a6f9-15182c372711"/>
+				<reportElement mode="Opaque" x="30" y="0" width="750" height="30" forecolor="#F0A173" backcolor="#F5D384" uuid="acc83789-a2cd-4594-a6f9-15182c372711"/>
 				<staticText>
-					<reportElement x="130" y="0" width="100" height="30" uuid="af15a471-d75c-4674-bfe6-03e4e31a3862">
+					<reportElement x="160" y="2" width="160" height="30" uuid="af15a471-d75c-4674-bfe6-03e4e31a3862">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4f23617f-46fd-4765-8f75-4e11dd4bfc82"/>
 					</reportElement>
 					<textElement verticalAlignment="Middle">
-						<font isBold="true"/>
+						<font size="12" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Codigo ISIN]]></text>
+					<text><![CDATA[Código ISIN]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="250" y="0" width="100" height="30" uuid="7e723cb8-7725-401a-a5b4-62397cd253dc">
+					<reportElement x="320" y="2" width="220" height="30" uuid="7e723cb8-7725-401a-a5b4-62397cd253dc">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cd666b0e-cc5d-4141-a945-db964b64d818"/>
 					</reportElement>
 					<textElement verticalAlignment="Middle">
-						<font isBold="true"/>
+						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Oficinas centrales]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="370" y="0" width="100" height="30" uuid="32a796aa-52f6-46e0-ba58-861f5c6a6328">
+					<reportElement x="540" y="2" width="210" height="30" uuid="32a796aa-52f6-46e0-ba58-861f5c6a6328">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6a3be00d-1972-4a17-a4ec-4f81c516a9db"/>
 					</reportElement>
 					<textElement verticalAlignment="Middle">
-						<font isBold="true"/>
+						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Web]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="10" y="0" width="100" height="30" uuid="25273c14-9150-4819-a70d-67838d0e3da2">
+					<reportElement x="10" y="2" width="150" height="30" uuid="25273c14-9150-4819-a70d-67838d0e3da2">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7f4646de-4f41-4760-bc10-9d627ea53c84"/>
 					</reportElement>
 					<textElement verticalAlignment="Middle">
-						<font isBold="true"/>
+						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Nombre de la marca]]></text>
 				</staticText>
@@ -135,29 +144,41 @@ FROM noinch.brands]]>
 	<detail>
 		<band height="36" splitType="Stretch">
 			<frame>
-				<reportElement style="ColorAlterno" x="30" y="-5" width="480" height="30" uuid="b5c9895a-7d73-4e74-bc39-69c6c2a48604"/>
+				<reportElement style="ColorAlterno" x="30" y="-5" width="750" height="30" uuid="b5c9895a-7d73-4e74-bc39-69c6c2a48604"/>
 				<textField>
-					<reportElement x="130" y="3" width="100" height="30" uuid="9ecf743c-942f-424f-9e94-6fe118237df0">
+					<reportElement x="160" y="0" width="160" height="30" uuid="9ecf743c-942f-424f-9e94-6fe118237df0">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4f23617f-46fd-4765-8f75-4e11dd4bfc82"/>
 					</reportElement>
+					<textElement>
+						<font size="12"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{isin}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="370" y="3" width="100" height="30" uuid="ac5bee55-9fbb-4c8e-a230-5a87e3c9cbf8">
+					<reportElement x="540" y="0" width="210" height="30" uuid="ac5bee55-9fbb-4c8e-a230-5a87e3c9cbf8">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6a3be00d-1972-4a17-a4ec-4f81c516a9db"/>
 					</reportElement>
+					<textElement>
+						<font size="12"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{web}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="250" y="3" width="100" height="30" uuid="7c8ce720-6194-4efd-b13d-467d4dc6171f">
+					<reportElement x="320" y="0" width="220" height="30" uuid="7c8ce720-6194-4efd-b13d-467d4dc6171f">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cd666b0e-cc5d-4141-a945-db964b64d818"/>
 					</reportElement>
+					<textElement>
+						<font size="12"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{headquarters}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="10" y="3" width="100" height="30" uuid="4f9777c3-95da-4dba-9d4d-5df44e31d8fe">
+					<reportElement x="10" y="0" width="150" height="30" uuid="4f9777c3-95da-4dba-9d4d-5df44e31d8fe">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7f4646de-4f41-4760-bc10-9d627ea53c84"/>
 					</reportElement>
+					<textElement>
+						<font size="12"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{brandName}]]></textFieldExpression>
 				</textField>
 			</frame>
@@ -177,19 +198,19 @@ FROM noinch.brands]]>
 				<text><![CDATA[Cantidad total de marcas:]]></text>
 			</staticText>
 			<textField evaluationTime="Report">
-				<reportElement x="490" y="10" width="30" height="30" uuid="60f87799-b292-4d26-a740-01dbff287010"/>
+				<reportElement x="750" y="10" width="30" height="30" uuid="60f87799-b292-4d26-a740-01dbff287010"/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="430" y="10" width="30" height="30" uuid="8ee9edb4-8a93-46c4-ba31-2f3c4f3d56d3"/>
+				<reportElement x="690" y="10" width="30" height="30" uuid="8ee9edb4-8a93-46c4-ba31-2f3c4f3d56d3"/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="380" y="10" width="50" height="30" uuid="c65aad01-7398-44e8-b389-a9854f38cad1"/>
+				<reportElement x="640" y="10" width="50" height="30" uuid="c65aad01-7398-44e8-b389-a9854f38cad1"/>
 				<text><![CDATA[Pagina]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="460" y="10" width="30" height="30" uuid="0c885475-125a-47f8-b57d-ed63025185bf"/>
+				<reportElement x="720" y="10" width="30" height="30" uuid="0c885475-125a-47f8-b57d-ed63025185bf"/>
 				<text><![CDATA[de]]></text>
 			</staticText>
 		</band>
