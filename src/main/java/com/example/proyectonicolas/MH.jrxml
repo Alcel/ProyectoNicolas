@@ -4,7 +4,7 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter1.xml"/>
 	<parameter name="Parameter1" class="java.lang.String"/>
-	<parameter name="Subreport" class="net.sf.jasperreports.engine.JasperReport"></parameter>
+	<parameter name="Subreport" class="net.sf.jasperreports.engine.JasperReport"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT `brandNumber`,
 	`brandName`,
@@ -121,6 +121,23 @@ marca:]]></text>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="50"/>
+		<band height="72">
+			<staticText>
+				<reportElement x="410" y="23" width="50" height="30" uuid="919e3f9e-a031-47f7-99f5-e5fc4cda1c0e"/>
+				<text><![CDATA[Pagina]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="460" y="23" width="30" height="30" uuid="07ad7f54-161e-4584-aec3-d5fa4b166a1b"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="490" y="23" width="30" height="30" uuid="32a747cd-d76e-4ce6-a6d1-681728eab6fc"/>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="520" y="23" width="30" height="30" uuid="aa9d83d7-f816-403f-aa2c-1dba6d2acd6e"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 </jasperReport>

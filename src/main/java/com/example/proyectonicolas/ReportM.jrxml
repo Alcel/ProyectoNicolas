@@ -164,17 +164,33 @@ FROM noinch.brands]]>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="50">
+		<band height="53">
 			<textField>
-				<reportElement x="470" y="10" width="30" height="30" uuid="42187382-a281-4b47-9563-89b903fc0719"/>
+				<reportElement x="180" y="10" width="30" height="30" uuid="42187382-a281-4b47-9563-89b903fc0719"/>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="330" y="10" width="140" height="30" uuid="f7064065-b267-4f91-a5f1-68a235fe9a99"/>
+				<reportElement x="40" y="10" width="140" height="30" uuid="f7064065-b267-4f91-a5f1-68a235fe9a99"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[Cantidad total de marcas:]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="490" y="10" width="30" height="30" uuid="60f87799-b292-4d26-a740-01dbff287010"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="10" width="30" height="30" uuid="8ee9edb4-8a93-46c4-ba31-2f3c4f3d56d3"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="380" y="10" width="50" height="30" uuid="c65aad01-7398-44e8-b389-a9854f38cad1"/>
+				<text><![CDATA[Pagina]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="10" width="30" height="30" uuid="0c885475-125a-47f8-b57d-ed63025185bf"/>
+				<text><![CDATA[de]]></text>
 			</staticText>
 		</band>
 	</pageFooter>
