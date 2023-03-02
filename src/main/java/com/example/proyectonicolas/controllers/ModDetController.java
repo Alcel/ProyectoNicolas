@@ -11,6 +11,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
 
+/**
+ * Manages the window in wich we edit an existing garment
+ */
 public class ModDetController {
 
     @FXML
@@ -32,6 +35,9 @@ public class ModDetController {
     private TextField comBox;
 
 
+    /**Sets fields with the garment's values
+     * @param texto
+     */
     public void initialize(Garment texto){
 
             System.out.println(texto);
@@ -49,6 +55,10 @@ public class ModDetController {
             }
 
         }
+
+    /**Saves the changes
+     * @param actionEvent
+     */
     @FXML
         public void addNew(ActionEvent actionEvent) {
             GarmentDAO garmentDAO = new GarmentDAO();
@@ -95,6 +105,10 @@ public class ModDetController {
 
             }
         }
+
+    /**On a toogle button click it changes it's text value
+     * @param actionEvent
+     */
     @FXML
 
     public void cambioDep(ActionEvent actionEvent) {
@@ -108,12 +122,18 @@ public class ModDetController {
             }
         }
 
+    /**Closes window
+     * @param actionEvent
+     */
         @FXML
         public void closeWindow(ActionEvent actionEvent) {
             Stage stage = (Stage) cancelButton.getScene().getWindow();
             stage.close();
         }
 
+    /**Clears all fields in the window
+     * @param actionEvent
+     */
         @FXML
         public void reset(ActionEvent actionEvent) {
             nameBox.clear();

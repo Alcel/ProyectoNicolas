@@ -21,6 +21,11 @@ public class ReportBrands extends JFrame {
 
     private static final long serialVersionUID = 1L;
 
+    /**Shows a simple report
+     * @throws JRException
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public void showReportSimple() throws JRException, ClassNotFoundException, SQLException {
 
         String servidor = "jdbc:mariadb://localhost:5555/noinch?useSSL=false";
@@ -55,6 +60,11 @@ public class ReportBrands extends JFrame {
 
     }
 
+    /**Shows a report that uses a subreport
+     * @throws JRException
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public void showReportConSubreport() throws JRException, ClassNotFoundException, SQLException {
 
         String servidor = "jdbc:mariadb://localhost:5555/noinch?useSSL=false";

@@ -7,6 +7,9 @@ import javafx.scene.control.Alert;
 
 import java.sql.*;
 
+/**
+ * This class purpose is to access and alter the database wich features the Garment entity
+ */
 public class GarmentDAO {
     private final String servidor = "jdbc:mariadb://localhost:5555/noinch?useSSL=false";
     private final String usuario = "adminer";
@@ -14,6 +17,10 @@ public class GarmentDAO {
 
     private Connection conexionBBDD;
 
+    /** This method purpose is to obtain one Garment data.
+     * @param num
+     * @return
+     */
     public ObservableList<Garment> obtenerGarments(int num) {
 
         ObservableList<Garment> datosResultadoConsulta = FXCollections.observableArrayList();
@@ -51,6 +58,15 @@ public class GarmentDAO {
             return datosResultadoConsulta;
         }
     }
+
+    /** This method purpose is to update a Garment
+     * @param id
+     * @param clothesName
+     * @param earnings
+     * @param launchDate
+     * @param avalible
+     * @param countryManufacture
+     */
     public void update(int id,String clothesName, Float earnings, String launchDate,
             int avalible, String countryManufacture ){
         String sql= "update clothes set clothesName = '" + clothesName+
@@ -65,6 +81,15 @@ public class GarmentDAO {
             throw new RuntimeException(e);
         }
     }
+
+    /**This method purpose is to insert a new Garment into the database
+     * @param clothesName
+     * @param earnings
+     * @param launchDate
+     * @param avalible
+     * @param countryManufacture
+     * @param idComp
+     */
     public void insert(String clothesName, Float earnings, String launchDate,
                        int avalible, String countryManufacture, int idComp){
         String SQL = "insert into clothes (clothesName,earnings,launchDate,avalible,countryManufacture,clothesBrandNumber) values ('"+
@@ -84,6 +109,10 @@ public class GarmentDAO {
             });
         }
     }
+
+    /** This method purpose is to delete the Garment wich has the clothesNumber that we have used as parameter
+     * @param num
+     */
     public void delete(int num){
         String SQL = "DELETE From clothes where clothesNumber ="+num;
         try {

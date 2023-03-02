@@ -28,6 +28,9 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+/**
+ * Main controller of the app
+ */
 public class HelloController {
 
     private ObservableList<Brand> marcas;
@@ -102,6 +105,9 @@ public class HelloController {
     @FXML
     private Button informeDetalleButton;
 
+    /**
+     * Loads the table containing every brand
+     */
     public void initialize() {
         brandNumberC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("brandNumber"));
         brandNameC.setCellValueFactory(new PropertyValueFactory<Brand, String>("brandName"));
@@ -129,6 +135,9 @@ public class HelloController {
         cargarDatosTabla();
     }
 
+    /**
+     * Sets every brand on the table
+     */
     public void cargarDatosTabla() {
         Task<List<Brand>> task = new Task<List<Brand>>(){
             @Override
@@ -142,13 +151,15 @@ public class HelloController {
 
     }
 
+    /**This method helps us filter through the table
+     * @param actionEvent
+     */
     @FXML
     public void search(ActionEvent actionEvent) {
         String idSearchBoxS = idSearchBox.getText();
         String nameSearchBoxS = nameSearchBox.getText();
         String dateSearchInitialS = dateSearchInitial.getText();
         String dateSearchFinalS = dateSearchFinal.getText();
-
 
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -199,6 +210,9 @@ public class HelloController {
     }
 
 
+    /**When clicking in the button to check if it's sporty or not what we are looking for, this method will chage the button's value
+     * @param actionEvent
+     */
     @FXML
     public void cambioDep(ActionEvent actionEvent) {
 
@@ -212,6 +226,9 @@ public class HelloController {
         }
     }
 
+    /**Opens window to add a new brand
+     * @param actionEvent
+     */
     @FXML
     public void add(ActionEvent actionEvent) {
         try {
@@ -238,6 +255,9 @@ public class HelloController {
         }
     }
 
+    /**Opens a window to edit an existing brand
+     * @param actionEvent
+     */
     @FXML
     public void openEdit(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -271,6 +291,9 @@ public class HelloController {
     }
 
 
+    /**Deletes the selected brand
+     * @param actionEvent
+     */
     @FXML
     public void deleteRow(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -293,6 +316,9 @@ public class HelloController {
         }
     }
 
+    /**
+     * When double clicking will open a window with the brand's garment
+     */
     private void cargarGestorDobleCLick() {
 
         tvBrands.setRowFactory(tv -> {
@@ -321,6 +347,9 @@ public class HelloController {
         });
     }
 
+    /**Opens a window with garment
+     * @param num
+     */
     public void openDet(int num) {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("details-view.fxml"));

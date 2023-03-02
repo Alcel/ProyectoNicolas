@@ -9,6 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
 
+/**
+ * This class controles the window in wich we add new brands
+ */
 public class AddController {
     @javafx.fxml.FXML
     private TextField webBox;
@@ -34,6 +37,9 @@ public class AddController {
 
     private HelloController hc = new HelloController();
 
+    /** This method purpose is to add a new Brand into the database using the values we have entered
+     * @param actionEvent
+     */
     @FXML
     public void addNew(ActionEvent actionEvent) {
         BrandDAO brandDAO = new BrandDAO();
@@ -82,6 +88,10 @@ public class AddController {
             }
         }
     }
+
+    /** This method chages the toogle button value
+     * @param actionEvent
+     */
     @FXML
     public void cambioDep(ActionEvent actionEvent) {
 
@@ -94,12 +104,18 @@ public class AddController {
         }
     }
 
+    /** Closes window
+     * @param actionEvent
+     */
     @FXML
     public void closeWindow(ActionEvent actionEvent) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
 
+    /**Clears or resets every field in window
+     * @param actionEvent
+     */
     @FXML
     public void reset(ActionEvent actionEvent) {
         nameBox.clear();

@@ -7,6 +7,9 @@ import java.sql.*;
 import com.example.proyectonicolas.modelo.Brand;
 import javafx.scene.control.Alert;
 
+/**
+ * This class purpose is to access and alter the database wich features the Brand entity
+ */
 public class BrandDAO {
     private final String servidor = "jdbc:mariadb://localhost:5555/noinch?useSSL=false";
     private final String usuario = "adminer";
@@ -14,6 +17,9 @@ public class BrandDAO {
 
     private Connection conexionBBDD;
 
+    /**The purpose of this method is to get all brands
+     * @return An ObservableList of all the Brands in the database
+     */
     public ObservableList<Brand> obtenerBrands() {
 
         ObservableList<Brand> datosResultadoConsulta = FXCollections.observableArrayList();
@@ -51,6 +57,16 @@ public class BrandDAO {
             return datosResultadoConsulta;
         }
     }
+
+    /**
+     * The purpose of this method is to filter brands
+     * @param cajaNum Code of the brand
+     * @param cajaNombre Name of the brand
+     * @param cajaFechaI First date
+     * @param cajaFechaF Last date
+     * @param deportivo Is deportive or not
+     * @return An ObservableList of brands
+     */
     public ObservableList<Brand> obtenerBrandsBusqueda(String cajaNum, String cajaNombre, String cajaFechaI, String cajaFechaF, int deportivo) {
         String numero=cajaNum;
         String nombre=cajaNombre;
@@ -115,6 +131,16 @@ public class BrandDAO {
     }
 
 
+    /**
+     * The purpose of this method is to insert a new brand into the database
+     * @param cajaNombre Brand name
+     * @param earnings Brand's earnings
+     * @param cajaFecha First date
+     * @param headquarters Headquarters location
+     * @param web Web page url
+     * @param deportivo Is sporty or not
+     * @param isin ISIN Code
+     */
     public void insert(String cajaNombre, Float earnings, String cajaFecha, String headquarters ,String web
             ,int deportivo, String isin ){
         String sql = "INSERT INTO brands(brandName,earnings,fundation,headquarters,web,isSporty,isin) VALUES " +
@@ -130,6 +156,18 @@ public class BrandDAO {
         }
 
     }
+
+    /**The purpose of this method is to update a brand in the database
+     * @param id Brand code
+     * @param cajaNombre Brand name
+     * @param earnings Brand's earnings
+     * @param cajaFecha First date
+     * @param headquarters Headquarters location
+     * @param web Web page url
+     * @param deportivo Is sporty or not
+     * @param isin ISIN Code
+     *
+     */
     public void update(int id,String cajaNombre, Float earnings, String cajaFecha, String headquarters ,String web
             ,int deportivo, String isin ){
         String sql= "update brands set brandName = '" + cajaNombre+
@@ -152,6 +190,10 @@ public class BrandDAO {
         }
     }
 
+    /**The purpose of this method is to delete the brand with the id that has been given
+     * @param id Brand Code
+     *
+     */
     public void delete (int id){
         String sql= "delete from brands where brandNumber ="+id ;
         try {

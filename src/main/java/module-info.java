@@ -6,6 +6,8 @@ module com.example.proyectonicolas {
     requires java.desktop;
 
 
+
+
     opens com.example.proyectonicolas to javafx.fxml;
     exports com.example.proyectonicolas;
 

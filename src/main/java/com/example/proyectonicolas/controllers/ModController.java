@@ -11,6 +11,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
 
+/**
+ * Manages the window in wich we edit an existing brand
+ */
 public class ModController {
 
         @FXML
@@ -38,7 +41,9 @@ public class ModController {
         private int id;
 
 
-
+    /**Sets fields with the brand's values
+     * @param texto
+     */
         public void initialize(Brand texto){
             nameBox.requestFocus();
 
@@ -59,6 +64,9 @@ public class ModController {
 
         }
 
+    /**Saves the changes
+     * @param actionEvent
+     */
         public void addNew(ActionEvent actionEvent) {
             BrandDAO brandDAO= new BrandDAO();
             String nombreS = nameBox.getText();
@@ -109,6 +117,10 @@ public class ModController {
 
             }
         }
+
+    /**On a toogle button click it changes it's text value
+     * @param actionEvent
+     */
         public void cambioDep(ActionEvent actionEvent) {
             if (deptvTogle.isSelected()){
                 buleano=1;
@@ -120,12 +132,18 @@ public class ModController {
             }
         }
 
+    /** Closes the window
+     * @param actionEvent
+     */
         @FXML
         public void closeWindow(ActionEvent actionEvent) {
             Stage stage = (Stage) cancelButton.getScene().getWindow();
             stage.close();
         }
 
+    /**Clears all fields in the window
+     * @param actionEvent
+     */
         @FXML
         public void reset(ActionEvent actionEvent) {
             nameBox.clear();

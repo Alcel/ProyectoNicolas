@@ -22,6 +22,9 @@ import java.sql.Date;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+/** This class manages a brand's garments
+ *
+ */
 public class DetailsController{
 
     @javafx.fxml.FXML
@@ -60,7 +63,9 @@ public class DetailsController{
     private int buleano;
 
 
-
+    /** On start up loads a brands garments
+     * @param num
+     */
     public void initialize(int num) {
         numero = num;
         numC.setCellValueFactory(new PropertyValueFactory<Brand, Integer>("clothesNumber"));
@@ -78,12 +83,19 @@ public class DetailsController{
 
     }
 
+    /**Loads a table of garments owned by the brand id it recieves as parameter
+     * @param num
+     */
     private void cargarDatosTabla (int num) {
 
         prendas =  garment.obtenerGarments(num);
 
         tvGarment.setItems(prendas);
     }
+
+    /** On editing a garment loads it's window
+     * @param actionEvent
+     */
     @javafx.fxml.FXML
     public void openEdit(ActionEvent actionEvent) {
          Stage stage=new Stage();
@@ -115,6 +127,9 @@ public class DetailsController{
         }
     }
 
+    /** On adding a garment loads the add window
+     * @param actionEvent
+     */
     @javafx.fxml.FXML
     public void addEdit(ActionEvent actionEvent) {
         //Create Stage
@@ -176,6 +191,9 @@ public class DetailsController{
 
     }
 
+    /**Deletes a garment
+     * @param actionEvent
+     */
     @javafx.fxml.FXML
     public void deleteEdit(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -197,6 +215,10 @@ public class DetailsController{
             });
         }
     }
+
+    /**
+     * Opens a window to add a new garment
+     */
     public void addNew() {
          Stage stage=new Stage();
 
@@ -242,6 +264,10 @@ public class DetailsController{
 
         }
     }
+
+    /**
+     * Changes the toogle buton values
+     */
     public void cambioDep() {
         if (deptvTogle.isSelected()) {
             buleano = 1;
