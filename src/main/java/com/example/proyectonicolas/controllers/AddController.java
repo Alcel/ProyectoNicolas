@@ -38,7 +38,7 @@ public class AddController {
     private HelloController hc = new HelloController();
 
     /** This method purpose is to add a new Brand into the database using the values we have entered
-     * @param actionEvent
+     * @param actionEvent  Click action
      */
     @FXML
     public void addNew(ActionEvent actionEvent) {
@@ -90,7 +90,7 @@ public class AddController {
     }
 
     /** This method chages the toogle button value
-     * @param actionEvent
+     * @param actionEvent Click action
      */
     @FXML
     public void cambioDep(ActionEvent actionEvent) {
@@ -105,7 +105,7 @@ public class AddController {
     }
 
     /** Closes window
-     * @param actionEvent
+     * @param actionEvent Click action
      */
     @FXML
     public void closeWindow(ActionEvent actionEvent) {
@@ -114,7 +114,7 @@ public class AddController {
     }
 
     /**Clears or resets every field in window
-     * @param actionEvent
+     * @param actionEvent Click action
      */
     @FXML
     public void reset(ActionEvent actionEvent) {

@@ -16,14 +16,14 @@ public class Brand {
     private String isin;
 
     /**Creates a new brand
-     * @param brandNumber
-     * @param brandName
-     * @param earnings
-     * @param fundation
-     * @param headquarters
-     * @param web
-     * @param isSporty
-     * @param isin
+     * @param brandNumber Id of brand
+     * @param brandName Name of the brand
+     * @param earnings Earnings of the brand
+     * @param fundation Date of fundation of the brand
+     * @param headquarters A brand's headquarters location
+     * @param web A brand's web url
+     * @param isSporty Sporty or not
+     * @param isin ISIN code of the brand
      */
     public Brand(int brandNumber, String brandName, float earnings, Date fundation, String headquarters, String web, int isSporty, String isin) {
         this.brandNumber = brandNumber;
@@ -71,7 +71,7 @@ public class Brand {
     }
 
     /**Sets brand number
-     * @param brandNumber
+     * @param brandNumber Id of brand
      */
     public void setBrandNumber(int brandNumber) {
         this.brandNumber = brandNumber;
@@ -85,7 +85,7 @@ public class Brand {
     }
 
     /** Sets brand name
-     * @param brandName
+     * @param brandName Name of the brand
      */
     public void setBrandName(String brandName) {
         this.brandName = brandName;
@@ -99,7 +99,7 @@ public class Brand {
     }
 
     /**Set earnings value
-     * @param earnings
+     * @param earnings Earnings of the brand
      */
     public void setEarnings(float earnings) {
         this.earnings = earnings;
@@ -113,7 +113,7 @@ public class Brand {
     }
 
     /** Sets fundation value
-     * @param fundation
+     * @param fundation Date of fundation of the brand
      */
     public void setFundation(Date fundation) {
         this.fundation = fundation;
@@ -127,7 +127,7 @@ public class Brand {
     }
 
     /** Sets headquarters value
-     * @param headquarters
+     * @param headquarters A brand's headquarters location
      */
     public void setHeadquarters(String headquarters) {
         this.headquarters = headquarters;
@@ -141,7 +141,7 @@ public class Brand {
     }
 
     /**Sets web value
-     * @param web
+     * @param web A brand's web url
      */
     public void setWeb(String web) {
         this.web = web;
@@ -155,7 +155,7 @@ public class Brand {
     }
 
     /**Sets if the brand is sporty
-     * @param isSporty
+     * @param isSporty Sporty or not
      */
     public void setSporty(boolean isSporty) {
         isSporty = isSporty;
@@ -169,7 +169,7 @@ public class Brand {
     }
 
     /**Sets isin code using parameter
-     * @param isin
+     * @param isin ISIN code of the brand
      */
     public void setIsin(String isin) {
         this.isin = isin;

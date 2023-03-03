@@ -15,13 +15,13 @@ public class Garment {
     private String countryManufacture;
 
     /**Creates a new Garment
-     * @param clothesNumber
-     * @param clothesName
-     * @param clothesBrandNumber
-     * @param launchDate
-     * @param earnings
-     * @param avalible
-     * @param countryManufacture
+     * @param clothesNumber  Id of garment
+     * @param clothesName Name of the garment
+     * @param clothesBrandNumber Id of brand
+     * @param launchDate Date in wich this garment was avalible for the first time
+     * @param earnings Earnings of the garment
+     * @param avalible availability
+     * @param countryManufacture Country in wich this garment is being or was manufactured
      */
     public Garment(int clothesNumber, String clothesName,int clothesBrandNumber, Date launchDate ,float earnings,
                    int avalible, String countryManufacture) {

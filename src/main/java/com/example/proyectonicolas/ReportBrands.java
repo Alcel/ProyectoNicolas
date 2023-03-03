@@ -17,6 +17,9 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.swing.JRViewer;
 
+/**
+ * Shows reports
+ */
 public class ReportBrands extends JFrame {
 
     private static final long serialVersionUID = 1L;
